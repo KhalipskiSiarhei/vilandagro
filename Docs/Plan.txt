@@ -1,0 +1,12 @@
+Vilandagro.ru. List of tasks
+1) - Create project structure + put it under Git control
+2) - Integrate AngularJS into MVC/WebApi pipeline with default implementation + initial tests with StructureMap
+3) - Implement mockup and agree with Misha
+4) - DB investigation to allow working with EF and NH
+5) - Create DB structure with usage of sql-scripts
+6) - Automate DB process creation
+7) - Unit-of-work pattern implementation
+8) - EF layer implementation (integration with UOF + Repository+Specification pattern implementation)
+9) - NH layer implementation (integration with UOF + Repository+Specification pattern implementation)
+10) - Logic implementation
+10.1) - provide more detailed plan here...
