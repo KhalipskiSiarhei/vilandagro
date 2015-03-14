@@ -1,6 +1,6 @@
 Vilandagro.ru. List of tasks
 1) - Create project structure + put it under Git control - done
-2) - FxCop + StyleCop integration
+2) - FxCop + StyleCop integration - done
 3) - Implement mockup and agree with Misha
 4) - DB investigation to allow working with EF and NH + free hosting without any server installation
 5) - Create DB structure with usage of sql-scripts
