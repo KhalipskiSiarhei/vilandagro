@@ -1,8 +1,8 @@
 Vilandagro.ru. List of tasks
 1) - Create project structure + put it under Git control - done
-2) - Integrate AngularJS into MVC/WebApi pipeline with default implementation + initial tests with StructureMap
+2) - FxCop + StyleCop integration
 3) - Implement mockup and agree with Misha
-4) - DB investigation to allow working with EF and NH
+4) - DB investigation to allow working with EF and NH + free hosting without any server installation
 5) - Create DB structure with usage of sql-scripts
 6) - Automate DB process creation
 7) - Unit-of-work pattern implementation
@@ -13,4 +13,9 @@ Vilandagro.ru. List of tasks
 12) - Logic implementation
 13) - MassTransit integration (to move any long-running process to the background)
 14) - SignalR integration (notification from the server side regarding any changes (report was generated or smth like this))
-15.1) - Provide more detailed plan here...
+15) - MassTransit integration (report generation, any kind of background handling)
+16) - Automation scripts (DB creation, tests running, any other things to automate)
+17) - Async usage
+18) - Integrate AngularJS into MVC/WebApi pipeline
+19) - Integrate DurandalJS into MVC/WebApi pipeline
+20) - Implement business logic here. TODO: Ppovide more detailed plan
