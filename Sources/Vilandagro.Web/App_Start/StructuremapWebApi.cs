@@ -20,10 +20,13 @@ using Vilandagro.Web.DependencyResolution;
 
 [assembly: WebActivatorEx.PostApplicationStartMethod(typeof(Vilandagro.Web.App_Start.StructuremapWebApi), "Start")]
 
-namespace Vilandagro.Web.App_Start {
-    public static class StructuremapWebApi {
-        public static void Start() {
-			var container = StructuremapMvc.StructureMapDependencyScope.Container;
+namespace Vilandagro.Web.App_Start
+{
+    public static class StructuremapWebApi
+    {
+        public static void Start()
+        {
+            var container = StructuremapMvc.StructureMapDependencyScope.Container;
             GlobalConfiguration.Configuration.DependencyResolver = new StructureMapWebApiDependencyResolver(container);
         }
     }

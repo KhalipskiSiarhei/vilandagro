@@ -30,7 +30,8 @@ namespace Vilandagro.Web.DependencyResolution
     public class StructureMapWebApiDependencyScope : StructureMapDependencyScope, IDependencyScope
     {
         public StructureMapWebApiDependencyScope(IContainer container)
-            : base(container) {
+            : base(container)
+        {
         }
     }
 }
