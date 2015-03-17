@@ -1,21 +1,24 @@
 Vilandagro.ru. List of tasks
 1) - Create project structure + put it under Git control - done
 2) - FxCop + StyleCop integration - done
-3) - Implement mockup and agree with Misha
+3) - Implement mockup and agree with Misha -in progress
 4) - DB investigation to allow working with EF and NH + free hosting without any server installation
 5) - Create DB structure with usage of sql-scripts
 6) - Automate DB process creation
 7) - Unit-of-work pattern implementation
 8) - EF layer implementation (integration with UOF + Repository+Specification pattern implementation)
 9) - NH layer implementation (integration with UOF + Repository+Specification pattern implementation)
-10) - OWIN integration
-11) - SpecFlow integration
-12) - Logic implementation
+10) - NoSql layer implementation
+11) - OWIN integration
+12) - SpecFlow integration
 13) - MassTransit integration (to move any long-running process to the background)
 14) - SignalR integration (notification from the server side regarding any changes (report was generated or smth like this))
-15) - MassTransit integration (report generation, any kind of background handling)
+15) - Clouds host (what steps should be done to host application in the cloud and take all advantages of this deployment)
 16) - Automation scripts (DB creation, tests running, any other things to automate)
 17) - Async usage
 18) - Integrate AngularJS into MVC/WebApi pipeline
 19) - Integrate DurandalJS into MVC/WebApi pipeline
 20) - Implement business logic here. TODO: Ppovide more detailed plan
+
+Mockups:
+1) - http://startbootstrap.com/template-overviews/heroic-features/

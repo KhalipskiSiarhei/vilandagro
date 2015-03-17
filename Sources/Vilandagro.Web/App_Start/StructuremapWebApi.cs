@@ -16,6 +16,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Web.Http;
+using StructureMap;
+using Vilandagro.Web.Configuration;
 using Vilandagro.Web.DependencyResolution;
 
 [assembly: WebActivatorEx.PostApplicationStartMethod(typeof(Vilandagro.Web.App_Start.StructuremapWebApi), "Start")]
@@ -26,8 +28,18 @@ namespace Vilandagro.Web.App_Start
     {
         public static void Start()
         {
-            var container = StructuremapMvc.StructureMapDependencyScope.Container;
+            var container = GetConfiguredContainer();
             GlobalConfiguration.Configuration.DependencyResolver = new StructureMapWebApiDependencyResolver(container);
+        }
+
+        public static IContainer GetConfiguredContainer()
+        {
+            var container = IoC.Initialize();
+            container.Configure(c =>
+            {
+                c.AddRegistry<WebApiConfiguration>();
+            });
+            return container;
         }
     }
 }

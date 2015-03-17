@@ -16,7 +16,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using Vilandagro.Web.App_Start;
-
+using Vilandagro.Web.Configuration;
 using WebActivatorEx;
 
 [assembly: PreApplicationStartMethod(typeof(StructuremapMvc), "Start")]
@@ -25,13 +25,10 @@ using WebActivatorEx;
 namespace Vilandagro.Web.App_Start
 {
     using System.Web.Mvc;
-
+    using DependencyResolution;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
     using StructureMap;
-
-    using Vilandagro.Web.DependencyResolution;
-
+    
     public static class StructuremapMvc
     {
         #region Public Properties
@@ -49,10 +46,21 @@ namespace Vilandagro.Web.App_Start
 
         public static void Start()
         {
-            IContainer container = IoC.Initialize();
+            var container = GetConfiguredContainer();
             StructureMapDependencyScope = new StructureMapDependencyScope(container);
             DependencyResolver.SetResolver(StructureMapDependencyScope);
             DynamicModuleUtility.RegisterModule(typeof(StructureMapScopeModule));
+        }
+
+        public static IContainer GetConfiguredContainer()
+        {
+            IContainer container = IoC.Initialize();
+
+            container.Configure(c =>
+            {
+                c.AddRegistry<MvcConfiguration>();
+            });
+            return container;
         }
 
         #endregion
