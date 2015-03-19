@@ -9,7 +9,7 @@ Vilandagro.ru. List of tasks
 8) - EF layer implementation (integration with UOF + Repository+Specification pattern implementation)
 9) - NH layer implementation (integration with UOF + Repository+Specification pattern implementation)
 10) - NoSql layer implementation
-11) - OWIN integration
+11) - OWIN integration - partially (for WebApi). It is becesary to implement for SignalR staff
 12) - SpecFlow integration
 13) - MassTransit integration (to move any long-running process to the background)
 14) - SignalR integration (notification from the server side regarding any changes (report was generated or smth like this))

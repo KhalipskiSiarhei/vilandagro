@@ -6,7 +6,7 @@
   <sourcecode name="BundleConfig.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014/04/01 10:18:24.000</styleCop>
-      <settingsFile>2015/03/14 18:52:27.743</settingsFile>
+      <settingsFile>2015/03/17 20:41:09.299</settingsFile>
       <sourceFile>2015/03/14 18:48:13.121</sourceFile>
       <parser>2014/04/01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014/04/01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
@@ -29,7 +29,7 @@
   <sourcecode name="FilterConfig.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014/04/01 10:18:24.000</styleCop>
-      <settingsFile>2015/03/14 18:52:27.743</settingsFile>
+      <settingsFile>2015/03/17 20:41:09.299</settingsFile>
       <sourceFile>2015/03/12 19:32:28.522</sourceFile>
       <parser>2014/04/01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014/04/01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
@@ -52,7 +52,7 @@
   <sourcecode name="RouteConfig.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014/04/01 10:18:24.000</styleCop>
-      <settingsFile>2015/03/14 18:52:27.743</settingsFile>
+      <settingsFile>2015/03/17 20:41:09.299</settingsFile>
       <sourceFile>2015/03/14 18:31:36.555</sourceFile>
       <parser>2014/04/01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014/04/01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
@@ -75,7 +75,7 @@
   <sourcecode name="StructuremapMvc.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014/04/01 10:18:24.000</styleCop>
-      <settingsFile>2015/03/14 18:52:27.743</settingsFile>
+      <settingsFile>2015/03/17 20:41:09.299</settingsFile>
       <sourceFile>2015/03/17 20:36:14.860</sourceFile>
       <parser>2014/04/01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014/04/01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
@@ -98,7 +98,7 @@
   <sourcecode name="StructuremapWebApi.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014/04/01 10:18:24.000</styleCop>
-      <settingsFile>2015/03/14 18:52:27.743</settingsFile>
+      <settingsFile>2015/03/17 20:41:09.299</settingsFile>
       <sourceFile>2015/03/17 20:30:04.945</sourceFile>
       <parser>2014/04/01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014/04/01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
@@ -121,7 +121,7 @@
   <sourcecode name="WebApiConfig.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014/04/01 10:18:24.000</styleCop>
-      <settingsFile>2015/03/14 18:52:27.743</settingsFile>
+      <settingsFile>2015/03/17 20:41:09.299</settingsFile>
       <sourceFile>2015/03/14 18:33:18.229</sourceFile>
       <parser>2014/04/01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014/04/01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
@@ -144,7 +144,7 @@
   <sourcecode name="BaseConfiguration.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014/04/01 10:18:24.000</styleCop>
-      <settingsFile>2015/03/14 18:52:27.743</settingsFile>
+      <settingsFile>2015/03/17 20:41:09.299</settingsFile>
       <sourceFile>2015/03/17 19:58:48.036</sourceFile>
       <parser>2014/04/01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014/04/01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
@@ -167,7 +167,7 @@
   <sourcecode name="MvcConfiguration.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014/04/01 10:18:24.000</styleCop>
-      <settingsFile>2015/03/14 18:52:27.743</settingsFile>
+      <settingsFile>2015/03/17 20:41:09.299</settingsFile>
       <sourceFile>2015/03/17 19:57:46.079</sourceFile>
       <parser>2014/04/01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014/04/01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
@@ -190,7 +190,7 @@
   <sourcecode name="WebApiConfiguration.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014/04/01 10:18:24.000</styleCop>
-      <settingsFile>2015/03/14 18:52:27.743</settingsFile>
+      <settingsFile>2015/03/17 20:41:09.299</settingsFile>
       <sourceFile>2015/03/17 20:20:19.967</sourceFile>
       <parser>2014/04/01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014/04/01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
@@ -213,7 +213,7 @@
   <sourcecode name="HomeController.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014/04/01 10:18:24.000</styleCop>
-      <settingsFile>2015/03/14 18:52:27.743</settingsFile>
+      <settingsFile>2015/03/17 20:41:09.299</settingsFile>
       <sourceFile>2015/03/17 19:00:48.974</sourceFile>
       <parser>2014/04/01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014/04/01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
@@ -236,7 +236,7 @@
   <sourcecode name="TestController.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014/04/01 10:18:24.000</styleCop>
-      <settingsFile>2015/03/14 18:52:27.743</settingsFile>
+      <settingsFile>2015/03/17 20:41:09.299</settingsFile>
       <sourceFile>2015/03/17 20:36:28.692</sourceFile>
       <parser>2014/04/01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014/04/01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
@@ -259,7 +259,7 @@
   <sourcecode name="ControllerConvention.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014/04/01 10:18:24.000</styleCop>
-      <settingsFile>2015/03/14 18:52:27.743</settingsFile>
+      <settingsFile>2015/03/17 20:41:09.299</settingsFile>
       <sourceFile>2015/03/14 18:41:05.034</sourceFile>
       <parser>2014/04/01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014/04/01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
@@ -282,7 +282,7 @@
   <sourcecode name="DefaultRegistry.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014/04/01 10:18:24.000</styleCop>
-      <settingsFile>2015/03/14 18:52:27.743</settingsFile>
+      <settingsFile>2015/03/17 20:41:09.299</settingsFile>
       <sourceFile>2015/03/17 20:36:47.727</sourceFile>
       <parser>2014/04/01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014/04/01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
@@ -305,7 +305,7 @@
   <sourcecode name="IoC.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014/04/01 10:18:24.000</styleCop>
-      <settingsFile>2015/03/14 18:52:27.743</settingsFile>
+      <settingsFile>2015/03/17 20:41:09.299</settingsFile>
       <sourceFile>2015/03/14 18:43:49.517</sourceFile>
       <parser>2014/04/01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014/04/01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
@@ -328,7 +328,7 @@
   <sourcecode name="StructureMapDependencyScope.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014/04/01 10:18:24.000</styleCop>
-      <settingsFile>2015/03/14 18:52:27.743</settingsFile>
+      <settingsFile>2015/03/17 20:41:09.299</settingsFile>
       <sourceFile>2015/03/14 18:45:02.524</sourceFile>
       <parser>2014/04/01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014/04/01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
@@ -351,7 +351,7 @@
   <sourcecode name="StructureMapScopeModule.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014/04/01 10:18:24.000</styleCop>
-      <settingsFile>2015/03/14 18:52:27.743</settingsFile>
+      <settingsFile>2015/03/17 20:41:09.299</settingsFile>
       <sourceFile>2015/03/17 19:04:22.122</sourceFile>
       <parser>2014/04/01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014/04/01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
@@ -374,7 +374,7 @@
   <sourcecode name="StructureMapWebApiDependencyResolver.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014/04/01 10:18:24.000</styleCop>
-      <settingsFile>2015/03/14 18:52:27.743</settingsFile>
+      <settingsFile>2015/03/17 20:41:09.299</settingsFile>
       <sourceFile>2015/03/14 16:16:14.747</sourceFile>
       <parser>2014/04/01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014/04/01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
@@ -397,7 +397,7 @@
   <sourcecode name="StructureMapWebApiDependencyScope.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014/04/01 10:18:24.000</styleCop>
-      <settingsFile>2015/03/14 18:52:27.743</settingsFile>
+      <settingsFile>2015/03/17 20:41:09.299</settingsFile>
       <sourceFile>2015/03/14 18:42:03.360</sourceFile>
       <parser>2014/04/01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014/04/01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
@@ -420,7 +420,7 @@
   <sourcecode name="Global.asax.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014/04/01 10:18:24.000</styleCop>
-      <settingsFile>2015/03/14 18:52:27.743</settingsFile>
+      <settingsFile>2015/03/17 20:41:09.299</settingsFile>
       <sourceFile>2015/03/12 19:32:39.771</sourceFile>
       <parser>2014/04/01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014/04/01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
@@ -443,7 +443,7 @@
   <sourcecode name="GlobalSuppressions.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014/04/01 10:18:24.000</styleCop>
-      <settingsFile>2015/03/14 18:52:27.743</settingsFile>
+      <settingsFile>2015/03/17 20:41:09.299</settingsFile>
       <sourceFile>2015/03/14 18:42:08.598</sourceFile>
       <parser>2014/04/01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014/04/01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
@@ -466,7 +466,7 @@
   <sourcecode name="AssemblyInfo.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014/04/01 10:18:24.000</styleCop>
-      <settingsFile>2015/03/14 18:52:27.743</settingsFile>
+      <settingsFile>2015/03/17 20:41:09.299</settingsFile>
       <sourceFile>2015/03/12 19:32:28.580</sourceFile>
       <parser>2014/04/01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014/04/01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
@@ -489,7 +489,7 @@
   <sourcecode name=".NETFramework,Version=v4.5.AssemblyAttributes.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014/04/01 10:18:24.000</styleCop>
-      <settingsFile>2015/03/14 18:52:27.743</settingsFile>
+      <settingsFile>2015/03/17 20:41:09.299</settingsFile>
       <sourceFile>2015/03/11 16:04:46.370</sourceFile>
       <parser>2014/04/01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014/04/01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
@@ -512,7 +512,7 @@
   <sourcecode name="TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014/04/01 10:18:24.000</styleCop>
-      <settingsFile>2015/03/14 18:52:27.743</settingsFile>
+      <settingsFile>2015/03/17 20:41:09.299</settingsFile>
       <sourceFile>2015/03/12 19:32:29.183</sourceFile>
       <parser>2014/04/01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014/04/01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
@@ -535,7 +535,7 @@
   <sourcecode name="TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014/04/01 10:18:24.000</styleCop>
-      <settingsFile>2015/03/14 18:52:27.743</settingsFile>
+      <settingsFile>2015/03/17 20:41:09.299</settingsFile>
       <sourceFile>2015/03/12 19:32:29.183</sourceFile>
       <parser>2014/04/01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014/04/01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
@@ -558,7 +558,7 @@
   <sourcecode name="TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014/04/01 10:18:24.000</styleCop>
-      <settingsFile>2015/03/14 18:52:27.743</settingsFile>
+      <settingsFile>2015/03/17 20:41:09.299</settingsFile>
       <sourceFile>2015/03/12 19:32:29.197</sourceFile>
       <parser>2014/04/01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014/04/01 10:18:24.000</StyleCop.CSharp.DocumentationRules>

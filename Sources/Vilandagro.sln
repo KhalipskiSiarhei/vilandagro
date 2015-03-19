@@ -28,6 +28,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Readme", "Readme", "{7D9205
 		Readme.txt = Readme.txt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vilandagro.Database", "Vilandagro.Database\Vilandagro.Database.csproj", "{232D9371-5F3A-4B70-8655-C436BBF03D29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vilandagro.Database.SqlCe", "Vilandagro.Database.SqlCe\Vilandagro.Database.SqlCe.csproj", "{9594C721-7ACA-49A4-9080-B26371C02268}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -70,6 +74,14 @@ Global
 		{C9F1239E-2132-4BD8-8228-880EF92AC540}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9F1239E-2132-4BD8-8228-880EF92AC540}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9F1239E-2132-4BD8-8228-880EF92AC540}.Release|Any CPU.Build.0 = Release|Any CPU
+		{232D9371-5F3A-4B70-8655-C436BBF03D29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{232D9371-5F3A-4B70-8655-C436BBF03D29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{232D9371-5F3A-4B70-8655-C436BBF03D29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{232D9371-5F3A-4B70-8655-C436BBF03D29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9594C721-7ACA-49A4-9080-B26371C02268}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9594C721-7ACA-49A4-9080-B26371C02268}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9594C721-7ACA-49A4-9080-B26371C02268}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9594C721-7ACA-49A4-9080-B26371C02268}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
