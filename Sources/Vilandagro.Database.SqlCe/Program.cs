@@ -8,7 +8,7 @@ using Common.Logging;
 
 namespace Vilandagro.Database.SqlCe
 {
-    class Program
+    public class Program
     {
         private static readonly string Vilandagro = "Vilandagro";
 
@@ -18,30 +18,32 @@ namespace Vilandagro.Database.SqlCe
 
         private static readonly string RunTestDataPrefix = RunTestData + "=";
 
-        private static readonly ILog _log = LogManager.GetLogger<Program>();
+        private static readonly ILog Log = LogManager.GetLogger<Program>();
 
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             try
             {
                 var connectionString = GetConnectionString(args);
                 var runTestData = GetRunTestData(args);
-                var dbUpgrader = new DbUpgrader(connectionString);
+                var databaseUpgrader = new DbUpgrader(connectionString);
 
-                _log.InfoFormat("Starting DB updating: connectionString={0}; runTestData={1}", connectionString,
+                Log.InfoFormat(
+                    "Starting DB updating: connectionString={0}; runTestData={1}",
+                    connectionString,
                     runTestData);
                 if (runTestData)
                 {
-                    dbUpgrader.UpgradeAndRunTestData();
+                    databaseUpgrader.UpgradeAndRunTestData();
                 }
                 else
                 {
-                    dbUpgrader.Update();
+                    databaseUpgrader.Update();
                 }
             }
             catch (Exception ex)
             {
-                _log.ErrorFormat("Unknown error", ex);
+                Log.ErrorFormat("Unknown error", ex);
             }
 
             Console.ReadKey();
@@ -71,13 +73,13 @@ namespace Vilandagro.Database.SqlCe
                 runTestData = runTestData.Substring(RunTestDataPrefix.Length);
             }
 
-            if (!string.IsNullOrEmpty(runTestData) && Boolean.TryParse(runTestData, out runTestDataValue))
+            if (!string.IsNullOrEmpty(runTestData) && bool.TryParse(runTestData, out runTestDataValue))
             {
                 return runTestDataValue;
             }
             else
             {
-                return Boolean.Parse(ConfigurationManager.AppSettings[RunTestData]);
+                return bool.Parse(ConfigurationManager.AppSettings[RunTestData]);
             }
         }
     }

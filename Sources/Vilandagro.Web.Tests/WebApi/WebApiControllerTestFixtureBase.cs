@@ -33,8 +33,10 @@ namespace Vilandagro.Web.Tests.WebApi
         {
             using (var httpClient = new HttpClient())
             {
-                var url = GetRequesturl(WebApiStarter.WebApiDefaultAddress, relativePath,
-                    args != null ? String.Join("/", args) : string.Empty);
+                var url = GetRequesturl(
+                    WebApiStarter.WebApiDefaultAddress,
+                    relativePath,
+                    args != null ? string.Join("/", args) : string.Empty);
                 var response = httpClient.GetAsync(url).Result;
 
                 Assert.IsTrue(response.IsSuccessStatusCode);

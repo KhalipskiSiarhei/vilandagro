@@ -1,11 +1,11 @@
-﻿using DbUp;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Common.Logging;
+using DbUp;
 using DbUp.Engine.Output;
 
 namespace Vilandagro.Database.SqlCe
@@ -14,9 +14,9 @@ namespace Vilandagro.Database.SqlCe
     {
         private const string ItemTemplate = " - {0}";
 
-        private IUpgradeLog _upgradeLog;
-
         private readonly string _connectionString;
+
+        private IUpgradeLog _upgradeLog;
 
         public DbUpgrader(string connectionString)
         {
@@ -86,12 +86,14 @@ namespace Vilandagro.Database.SqlCe
                                     "The following script(s) have been applied and then rollbecked because of error specified below");
                                 executedScripts.ForEach(s => _upgradeLog.WriteWarning(ItemTemplate, s.Name));
                             }
+
                             _upgradeLog.WriteError("There is the following error during upgrade: {0}", result.Error);
                         }
                     }
                     else
                     {
-                        _upgradeLog.WriteError("Step {0} is required but it was not get any scripts to be executed...",
+                        _upgradeLog.WriteError(
+                            "Step {0} is required but it was not get any scripts to be executed...",
                             stepName);
                     }
                 }
@@ -103,8 +105,10 @@ namespace Vilandagro.Database.SqlCe
             }
             catch (Exception ex)
             {
-                _upgradeLog.WriteError("Unknown error has been occured during step {0}. Detailed error: {1}",
-                    stepName, ex);
+                _upgradeLog.WriteError(
+                    "Unknown error has been occured during step {0}. Detailed error: {1}",
+                    stepName,
+                    ex);
             }
 
             _upgradeLog.WriteInformation("Step {0} has been finished", stepName);
