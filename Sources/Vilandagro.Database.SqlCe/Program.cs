@@ -10,76 +10,71 @@ namespace Vilandagro.Database.SqlCe
 {
     public class Program
     {
-        private static readonly string Vilandagro = "Vilandagro";
+        private const string ConnectionStringKey = "ConnectionString";
 
-        private static readonly string RunTestData = "RunTestData";
+        private const string ModeKey = "Mode";
 
-        private static readonly string ValandagroPrefix = Vilandagro + "=";
+        private const string ConnectionStringPrefix = ConnectionStringKey + "=";
 
-        private static readonly string RunTestDataPrefix = RunTestData + "=";
+        private const string ModePrefix = ModeKey + "=";
 
         private static readonly ILog Log = LogManager.GetLogger<Program>();
 
         public static void Main(string[] args)
         {
+            bool result = true;
+
             try
             {
                 var connectionString = GetConnectionString(args);
-                var runTestData = GetRunTestData(args);
-                var databaseUpgrader = new DbUpgrader(connectionString);
+                var mode = GetMode(args);
+                var databaseUpgrader = new DbUpgrader(mode, connectionString);
 
-                Log.InfoFormat(
-                    "Starting DB updating: connectionString={0}; runTestData={1}",
-                    connectionString,
-                    runTestData);
-                if (runTestData)
-                {
-                    databaseUpgrader.UpgradeAndRunTestData();
-                }
-                else
-                {
-                    databaseUpgrader.Update();
-                }
+                result = databaseUpgrader.Upgrade();
             }
             catch (Exception ex)
             {
                 Log.ErrorFormat("Unknown error", ex);
+                result = false;
             }
 
-            Console.ReadKey();
+            if (!result)
+            {
+                Console.ReadKey();
+            }
         }
 
         private static string GetConnectionString(string[] args)
         {
             var connectionString =
-                args.SingleOrDefault(a => a.StartsWith(ValandagroPrefix, StringComparison.InvariantCultureIgnoreCase));
+                args.SingleOrDefault(a => a.StartsWith(ConnectionStringPrefix, StringComparison.InvariantCultureIgnoreCase));
 
             if (!string.IsNullOrEmpty(connectionString))
             {
-                connectionString = connectionString.Substring(ValandagroPrefix.Length);
+                connectionString = connectionString.Substring(ConnectionStringPrefix.Length);
             }
 
-            return connectionString ?? ConfigurationManager.ConnectionStrings[Vilandagro].ConnectionString;
+            return connectionString ?? ConfigurationManager.ConnectionStrings[ConnectionStringKey].ConnectionString;
         }
 
-        private static bool GetRunTestData(string[] args)
+        private static Mode GetMode(string[] args)
         {
-            var runTestData =
-                args.SingleOrDefault(a => a.StartsWith(RunTestDataPrefix, StringComparison.InvariantCultureIgnoreCase));
-            bool runTestDataValue;
+            var modeStr =
+                args.SingleOrDefault(a => a.StartsWith(ModePrefix, StringComparison.InvariantCultureIgnoreCase));
+            Mode mode;
 
-            if (!string.IsNullOrEmpty(runTestData))
+            if (!string.IsNullOrEmpty(modeStr))
             {
-                runTestData = runTestData.Substring(RunTestDataPrefix.Length);
+                modeStr = modeStr.Substring(ModePrefix.Length);
             }
 
-            if (!string.IsNullOrEmpty(runTestData) && bool.TryParse(runTestData, out runTestDataValue))
+            if (!string.IsNullOrEmpty(modeStr) && Enum.TryParse(modeStr, out mode))
             {
-                return runTestDataValue;
+                return mode;
             }
             else
             {
-                return bool.Parse(ConfigurationManager.AppSettings[RunTestData]);
+                return (Mode) Enum.Parse(typeof (Mode), (ConfigurationManager.AppSettings[ModeKey]));
             }
         }
     }

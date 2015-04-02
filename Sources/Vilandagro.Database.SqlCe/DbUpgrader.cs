@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Common.Logging;
 using DbUp;
 using DbUp.Engine.Output;
@@ -14,34 +11,107 @@ namespace Vilandagro.Database.SqlCe
     {
         private const string ItemTemplate = " - {0}";
 
+        private Mode _mode;
+
         private readonly string _connectionString;
 
         private IUpgradeLog _upgradeLog;
 
-        public DbUpgrader(string connectionString)
+        public DbUpgrader(Mode mode, string connectionString)
         {
             _upgradeLog = new UpgradeLog(LogManager.GetLogger<DbUpgrader>());
-            _connectionString = connectionString;
+            _mode = mode;
+            _connectionString = GetConnectionStringWithFullPath(connectionString);
+        }
+
+        public string GetConnectionString()
+        {
+            return _connectionString;
+        }
+
+        public string GetPathOfConnectionString()
+        {
+            return GetPathOfConnectionString(_connectionString);
+        }
+
+        public bool Upgrade()
+        {
+            try
+            {
+                bool result;
+
+                _upgradeLog.WriteInformation(
+                    "Starting DB updating: connectionString={0}; mode={1}",
+                    _connectionString,
+                    _mode);
+
+                if (_mode == Mode.CreateDb)
+                {
+                    result = CreateDb();
+                }
+                else if (_mode == Mode.CreateTestDb)
+                {
+                    result = CreateTestDb();
+                }
+                else if (_mode == Mode.Update)
+                {
+                    result = Update();
+                }
+                else
+                {
+                    throw new NotSupportedException(string.Format("Mode={0} is not supported by the application", _mode));
+                }
+
+                if (result)
+                {
+                    _upgradeLog.WriteInformation("Upgrade process has been finished successfully!");
+                }
+                else
+                {
+                    _upgradeLog.WriteWarning("Upgrade process has been failed, see messages above for more details");
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _upgradeLog.WriteError("Unknown error during upgrading: {0}", ex);
+                throw;
+            }
         }
 
         /// <summary>
-        /// Update DB to the newest version
+        /// Update existed DB to the newest version
         /// </summary>
-        public bool Update()
+        protected bool Update()
         {
             return RunUpgrade(_connectionString, @"Scripts\Updates", "DB Update");
+        }
+
+        /// <summary>
+        /// Create new Db
+        /// </summary>
+        protected bool CreateDb()
+        {
+            // Create empty DB
+            var destDbPath = GetPathOfConnectionString(_connectionString);
+
+            File.Create(destDbPath).Dispose();
+
+            // Run update
+            return Update();
         }
 
         /// <summary>
         /// Upgrade DB to the newest version and run test data
         /// </summary>
         /// <returns></returns>
-        public bool UpgradeAndRunTestData()
+        protected bool CreateTestDb()
         {
-            return Update() && RunUpgrade(_connectionString, @"Scripts\TestData", "Test Data");
+            return CreateDb() && RunUpgrade(_connectionString, @"Scripts\TestData", "Test Data");
         }
 
-        private bool RunUpgrade(string connectionString, string scriptsPath, string stepName)
+        protected bool RunUpgrade(string connectionString, string scriptsPath, string stepName)
         {
             var upgraded = false;
 
@@ -113,6 +183,26 @@ namespace Vilandagro.Database.SqlCe
 
             _upgradeLog.WriteInformation("Step {0} has been finished", stepName);
             return upgraded;
+        }
+
+        private string GetConnectionStringWithFullPath(string connectionString)
+        {
+            var pathOfConnectionString = GetPathOfConnectionString(connectionString);
+
+            if (!Path.IsPathRooted(pathOfConnectionString))
+            {
+                var fullPathOfConnectionString = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
+                    pathOfConnectionString);
+
+                connectionString = connectionString.Replace(pathOfConnectionString, fullPathOfConnectionString);
+            }
+            return connectionString;
+        }
+
+        private string GetPathOfConnectionString(string connectionString)
+        {
+            var pathOfConnectionString = connectionString.Split(new[] { "=" }, StringSplitOptions.RemoveEmptyEntries)[1];
+            return pathOfConnectionString;
         }
     }
 }

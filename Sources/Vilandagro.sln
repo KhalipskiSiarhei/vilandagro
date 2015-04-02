@@ -32,6 +32,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vilandagro.Database", "Vila
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vilandagro.Database.SqlCe", "Vilandagro.Database.SqlCe\Vilandagro.Database.SqlCe.csproj", "{9594C721-7ACA-49A4-9080-B26371C02268}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vilandagro.Database.SqlCe.Tests", "Vilandagro.Database.SqlCe.Tests\Vilandagro.Database.SqlCe.Tests.csproj", "{A5B8D439-57B4-45F2-9FC6-62B44447DFA1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -82,6 +84,10 @@ Global
 		{9594C721-7ACA-49A4-9080-B26371C02268}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9594C721-7ACA-49A4-9080-B26371C02268}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9594C721-7ACA-49A4-9080-B26371C02268}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5B8D439-57B4-45F2-9FC6-62B44447DFA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5B8D439-57B4-45F2-9FC6-62B44447DFA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5B8D439-57B4-45F2-9FC6-62B44447DFA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5B8D439-57B4-45F2-9FC6-62B44447DFA1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -91,5 +97,6 @@ Global
 		{0E601447-2AEC-464E-B557-706ACE38F9C4} = {F908BE0D-3AF7-413A-B59B-E464DF10C01B}
 		{CC2C4BAB-1E9D-40B6-88AF-9D7AF5489BC1} = {F908BE0D-3AF7-413A-B59B-E464DF10C01B}
 		{C9F1239E-2132-4BD8-8228-880EF92AC540} = {F908BE0D-3AF7-413A-B59B-E464DF10C01B}
+		{A5B8D439-57B4-45F2-9FC6-62B44447DFA1} = {F908BE0D-3AF7-413A-B59B-E464DF10C01B}
 	EndGlobalSection
 EndGlobal
