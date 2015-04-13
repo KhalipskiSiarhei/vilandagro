@@ -14,8 +14,10 @@ namespace Vilandagro.Database.SqlCe.Tests
         [TestCase("mode=CreateTestDb")]
         public void RunUpgradeWithParameters(string mode)
         {
-            string connectionString = string.Format("connectionString=Data Source={0}", string.Concat(Guid.NewGuid(), ".sdf"));
-            Program.Main(new string[] {mode, connectionString});
+            string connectionString = string.Format(
+                "connectionString=Data Source={0}",
+                string.Concat(Guid.NewGuid(), ".sdf"));
+            Program.Main(new string[] { mode, connectionString });
         }
     }
 }

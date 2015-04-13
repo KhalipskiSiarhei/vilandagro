@@ -74,7 +74,7 @@ namespace Vilandagro.Database.SqlCe
             }
             else
             {
-                return (Mode) Enum.Parse(typeof (Mode), (ConfigurationManager.AppSettings[ModeKey]));
+                return (Mode)Enum.Parse(typeof(Mode), ConfigurationManager.AppSettings[ModeKey]);
             }
         }
     }

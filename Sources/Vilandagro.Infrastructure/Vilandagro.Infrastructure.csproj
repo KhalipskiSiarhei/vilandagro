@@ -46,7 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IRequestAware.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StaticRequestAware.cs" />
+    <Compile Include="ThreadRequestAware.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

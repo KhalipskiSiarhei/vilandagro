@@ -11,9 +11,9 @@ namespace Vilandagro.Database.SqlCe
     {
         private const string ItemTemplate = " - {0}";
 
-        private Mode _mode;
-
         private readonly string _connectionString;
+
+        private Mode _mode;
 
         private IUpgradeLog _upgradeLog;
 
@@ -191,11 +191,13 @@ namespace Vilandagro.Database.SqlCe
 
             if (!Path.IsPathRooted(pathOfConnectionString))
             {
-                var fullPathOfConnectionString = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
+                var fullPathOfConnectionString = Path.Combine(
+                    AppDomain.CurrentDomain.BaseDirectory,
                     pathOfConnectionString);
 
                 connectionString = connectionString.Replace(pathOfConnectionString, fullPathOfConnectionString);
             }
+
             return connectionString;
         }
 
