@@ -54,6 +54,20 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Vilandagro.Core\Vilandagro.Core.csproj">
+      <Project>{de9f8d30-b329-452b-9b44-06d2bb6775b2}</Project>
+      <Name>Vilandagro.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vilandagro.Infrastructure.EF\Vilandagro.Infrastructure.EF.csproj">
+      <Project>{137168bd-15ec-4229-abc8-55e908d06e7c}</Project>
+      <Name>Vilandagro.Infrastructure.EF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vilandagro.Infrastructure\Vilandagro.Infrastructure.csproj">
+      <Project>{7cebbab1-9ef4-4e73-a177-bd4a3824ebea}</Project>
+      <Name>Vilandagro.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(ProgramFiles)\MSBuild\StyleCop\v4.7\StyleCop.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
