@@ -39,7 +39,7 @@ GO
 
 CREATE TABLE [ProductPrice]
 (
-	[ID] INT IDENTITY NOT NULL CONSTRAINT ProductPrice_PL Primary KEY,
+	[Id] INT IDENTITY NOT NULL CONSTRAINT ProductPrice_PL Primary KEY,
 	[ProductId] INT NOT NULL,
 	[UnitOfPriceId] INT NOT NULL,
 

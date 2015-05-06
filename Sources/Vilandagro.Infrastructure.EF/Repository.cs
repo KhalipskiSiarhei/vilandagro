@@ -22,41 +22,49 @@ namespace Vilandagro.Infrastructure.EF
             get { return _dbContext; }
         }
 
-        public IEnumerable<T> GetAll<T>() where T : class
+        public IQueryable GetAll(Type typeToGet)
         {
-            // TODO: It is the same as GetAll/Find... Is it OK?
-            return DbContext.Set<T>().AsEnumerable();
+            return DbContext.Set(typeToGet).AsQueryable();
         }
 
-        public IEnumerable<T> GetAll<T>(Expression<Func<T, bool>> predicate) where T : class
+        public IQueryable<T> GetAll<T>() where T : class
         {
-            return DbContext.Set<T>().Where(predicate).AsEnumerable();
+            return DbContext.Set<T>().AsQueryable();
+        }
+
+        public IQueryable<T> GetAll<T>(Expression<Func<T, bool>> predicate) where T : class
+        {
+            return GetAll<T>().Where(predicate).AsQueryable();
         }
 
         public IQueryable<T> Where<T>(Expression<Func<T, bool>> predicate) where T : class
         {
-            return DbContext.Set<T>().Where(predicate).AsQueryable();
+            return GetAll<T>().Where(predicate).AsQueryable();
         }
 
-        public IEnumerable<T> Find<T>(Expression<Func<T, bool>> predicate) where T : class
+        public T Find<T>(params object[] keys) where T : class
         {
-            // TODO: It is the same as GetAll/Find... Is it OK?
-            return DbContext.Set<T>().Where(predicate).AsEnumerable();
+            return DbContext.Set<T>().Find(keys);
+        }
+
+        public IQueryable<T> Find<T>(Expression<Func<T, bool>> predicate) where T : class
+        {
+            return GetAll<T>().Where(predicate).AsQueryable();
         }
 
         public bool Any<T>(Expression<Func<T, bool>> predicate) where T : class
         {
-            return DbContext.Set<T>().Any(predicate);
+            return GetAll<T>().Any(predicate);
         }
 
         public T First<T>(Expression<Func<T, bool>> predicate) where T : class
         {
-            return DbContext.Set<T>().Where(predicate).First();
+            return GetAll<T>().Where(predicate).First();
         }
 
         public T FirstOrDefault<T>(Expression<Func<T, bool>> predicate) where T : class
         {
-            return DbContext.Set<T>().Where(predicate).FirstOrDefault();
+            return GetAll<T>().Where(predicate).FirstOrDefault();
         }
 
         public void Add<T>(T entity) where T : class
@@ -74,6 +82,11 @@ namespace Vilandagro.Infrastructure.EF
             DbContext.Set<T>().Remove(entity);
         }
 
+        public void Delete<T>(Expression<Func<T, bool>> predicate) where T : class
+        {
+            DbContext.Set<T>().RemoveRange(Where(predicate));
+        }
+
         public void DeleteRange<T>(T[] entities) where T : class
         {
             DbContext.Set<T>().RemoveRange(entities);
@@ -82,6 +95,11 @@ namespace Vilandagro.Infrastructure.EF
         public void Attach<T>(T entity) where T : class
         {
             DbContext.Set<T>().Attach(entity);
+        }
+
+        public void SaveChanges()
+        {
+            DbContext.SaveChanges();
         }
     }
 }

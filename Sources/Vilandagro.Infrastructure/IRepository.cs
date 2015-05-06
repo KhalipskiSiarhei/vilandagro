@@ -8,17 +8,24 @@ namespace Vilandagro.Infrastructure
     public interface IRepository
     {
         /// <summary>
+        /// Get all entities
+        /// </summary>
+        /// <param name="typeToGet"></param>
+        /// <returns></returns>
+        IQueryable GetAll(Type typeToGet);
+
+        /// <summary>
         /// Gets all entities
         /// </summary>        
         /// <returns>All entities</returns>
-        IEnumerable<T> GetAll<T>() where T : class;
+        IQueryable<T> GetAll<T>() where T : class;
 
         /// <summary>
         /// Gets all entities matching the predicate
         /// </summary>
         /// <param name="predicate">The filter clause</param>
         /// <returns>All entities matching the predicate</returns>
-        IEnumerable<T> GetAll<T>(Expression<Func<T, bool>> predicate) where T : class;
+        IQueryable<T> GetAll<T>(Expression<Func<T, bool>> predicate) where T : class;
 
         /// <summary>
         /// Set based on where condition
@@ -28,11 +35,18 @@ namespace Vilandagro.Infrastructure
         IQueryable<T> Where<T>(Expression<Func<T, bool>> predicate) where T : class;
 
         /// <summary>
+        /// Find object by keys.
+        /// </summary>
+        /// <param name="keys">Specified the search keys.</param>
+        /// <returns></returns>
+        T Find<T>(params object[] keys) where T : class;
+
+        /// <summary>
         /// Finds an entity matching the predicate
         /// </summary>
         /// <param name="predicate">The filter clause</param>
         /// <returns>An entity matching the predicate</returns>
-        IEnumerable<T> Find<T>(Expression<Func<T, bool>> predicate) where T : class;
+        IQueryable<T> Find<T>(Expression<Func<T, bool>> predicate) where T : class;
 
         /// <summary>
         /// Determines if there are any entities matching the predicate
@@ -74,6 +88,13 @@ namespace Vilandagro.Infrastructure
         void Delete<T>(T entity) where T : class;
 
         /// <summary>
+        /// Delete objects from database by specified filter expression.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="predicate"></param>
+        void Delete<T>(Expression<Func<T, bool>> predicate) where T : class;
+
+        /// <summary>
         /// Deletes a given entity from the context
         /// </summary>
         /// <param name="entities">The entities set to delete</param>
@@ -84,5 +105,10 @@ namespace Vilandagro.Infrastructure
         /// </summary>
         /// <param name="entity">The entity to attach</param>
         void Attach<T>(T entity) where T : class;
+
+        /// <summary>
+        /// Save changes
+        /// </summary>
+        void SaveChanges();
     }
 }
