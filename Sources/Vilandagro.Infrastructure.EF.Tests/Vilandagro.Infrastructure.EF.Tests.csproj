@@ -65,6 +65,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryTests.Add.cs" />
+    <Compile Include="RepositoryTests.AddRange.cs" />
+    <Compile Include="RepositoryTests.Any.cs" />
+    <Compile Include="RepositoryTests.Delete.cs" />
+    <Compile Include="RepositoryTests.DeleteRange.cs" />
     <Compile Include="RepositoryTests.Find.cs" />
     <Compile Include="RepositoryTests.GetAll.cs" />
     <Compile Include="RepositoryTests.Where.cs" />

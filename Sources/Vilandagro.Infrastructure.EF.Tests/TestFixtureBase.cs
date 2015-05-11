@@ -11,7 +11,7 @@ namespace Vilandagro.Infrastructure.EF.Tests
 {
     public abstract class TestFixtureBase
     {
-        protected static readonly ILog _log = LogManager.GetLogger<ILog>();
+        protected static readonly ILog Log = LogManager.GetLogger<ILog>();
 
         private VilandagroDbContext _dbContext;
         private DbContextTransaction _transaction;
@@ -39,6 +39,12 @@ namespace Vilandagro.Infrastructure.EF.Tests
                 _transaction.Rollback();
                 _transaction.Dispose();
                 _transaction = null;
+            }
+
+            if (_dbContext != null)
+            {
+                _dbContext.Dispose();
+                _dbContext = null;
             }
         }
     }

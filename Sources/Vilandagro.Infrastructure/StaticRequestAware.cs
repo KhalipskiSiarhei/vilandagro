@@ -62,8 +62,8 @@ namespace Vilandagro.Infrastructure
                 if (data == null && throwExceptionIfNull)
                 {
                     throw new InvalidOperationException(
-                        string.Format("There is not a value with type {0} which is stored by the key {1}",
-                            typeof (T), key));
+                        string.Format("There is not a value with type {0} which is stored by the key {1}", typeof(T),
+                            key));
                 }
 
                 return data;

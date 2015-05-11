@@ -13,12 +13,12 @@ namespace Vilandagro.Infrastructure.EF
 {
     public class VilandagroDbContext : DbContext
     {
-        private static readonly ILog _log = LogManager.GetLogger<VilandagroDbContext>();
+        private static readonly ILog Log = LogManager.GetLogger<VilandagroDbContext>();
 
         public VilandagroDbContext()
             : base("VilandagroDatabase")
         {
-            Database.Log = _log.Debug;
+            Database.Log = Log.Debug;
             Database.SetInitializer<VilandagroDbContext>(null);
         }
 
