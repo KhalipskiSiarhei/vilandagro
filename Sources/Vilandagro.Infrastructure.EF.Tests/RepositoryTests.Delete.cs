@@ -58,5 +58,35 @@ namespace Vilandagro.Infrastructure.EF.Tests
             // Asserts
             Assert.Throws<InvalidOperationException>(() => Repo.Delete(category));
         }
+
+        [Test]
+        public void DeleteEntityById_EntityDoesNotExist_FalseReturned()
+        {
+            Assert.IsFalse(Repo.DeleteById<Category>(123));
+        }
+
+        [Test]
+        public void DeleteEntityById_EntityExists_EntityRemovedAndTrueReturned()
+        {
+            // Arrange
+            var categoryToCreate = new Category()
+            {
+                Description = "CategoryDescription",
+                Image = "Image",
+                Name = "Name",
+            };
+
+            Repo.Add(categoryToCreate);
+            Repo.SaveChanges();
+            var category = Repo.Where<Category>(x => x.Name == "Name").Single();
+            Assert.IsNotNull(category);
+
+            // Act
+            Assert.IsTrue(Repo.DeleteById<Category>(category.Id));
+            Repo.SaveChanges();
+
+            // Asserts
+            Assert.IsNull(Repo.Find<Category>(category.Id));
+        }
     }
 }

@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Vilandagro.Infrastructure
+namespace Vilandagro.Core
 {
     public interface IRepository
     {
@@ -82,6 +81,13 @@ namespace Vilandagro.Infrastructure
         void AddRange<T>(T[] entities) where T : class;
 
         /// <summary>
+        /// Delete entity by id
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="id"></param>
+        bool DeleteById<T>(int id) where T : class;
+
+        /// <summary>
         /// Deletes a given entity from the context
         /// </summary>
         /// <param name="entity">The entity to delete</param>
@@ -92,7 +98,7 @@ namespace Vilandagro.Infrastructure
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="predicate"></param>
-        void Delete<T>(Expression<Func<T, bool>> predicate) where T : class;
+        bool Delete<T>(Expression<Func<T, bool>> predicate) where T : class;
 
         /// <summary>
         /// Deletes a given entity from the context

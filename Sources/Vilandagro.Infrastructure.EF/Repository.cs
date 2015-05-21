@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using Vilandagro.Core;
 
 namespace Vilandagro.Infrastructure.EF
 {
@@ -77,14 +78,32 @@ namespace Vilandagro.Infrastructure.EF
             DbContext.Set<T>().AddRange(entities);
         }
 
+        public bool DeleteById<T>(int id) where T : class
+        {
+            var entity = Find<T>(id);
+
+            if (entity != null)
+            {
+                Delete(entity);
+            }
+            return entity != null;
+        }
+
         public void Delete<T>(T entity) where T : class
         {
             DbContext.Set<T>().Remove(entity);
         }
 
-        public void Delete<T>(Expression<Func<T, bool>> predicate) where T : class
+        public bool Delete<T>(Expression<Func<T, bool>> predicate) where T : class
         {
-            DbContext.Set<T>().RemoveRange(Where(predicate));
+            var entities = Where(predicate).ToList();
+            var isEntitiesToRemove = entities.Any();
+
+            if (isEntitiesToRemove)
+            {
+                DbContext.Set<T>().RemoveRange(entities);
+            }
+            return isEntitiesToRemove;
         }
 
         public void DeleteRange<T>(T[] entities) where T : class

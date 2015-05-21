@@ -9,11 +9,12 @@ using NUnit.Framework;
 
 namespace Vilandagro.Infrastructure.EF.Tests
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable")]
     public abstract class TestFixtureBase
     {
         protected static readonly ILog Log = LogManager.GetLogger<ILog>();
 
-        private VilandagroDbContext _dbContext;
+        protected VilandagroDbContext _dbContext;
         private DbContextTransaction _transaction;
         private Repository _repo;
 
@@ -23,7 +24,7 @@ namespace Vilandagro.Infrastructure.EF.Tests
         }
 
         [SetUp]
-        public void SetUp()
+        protected virtual void SetUp()
         {
             _dbContext = new VilandagroDbContext();
             _transaction = _dbContext.Database.BeginTransaction();
@@ -32,7 +33,7 @@ namespace Vilandagro.Infrastructure.EF.Tests
         }
 
         [TearDown]
-        public void TearDown()
+        protected virtual void TearDown()
         {
             if (_transaction != null)
             {

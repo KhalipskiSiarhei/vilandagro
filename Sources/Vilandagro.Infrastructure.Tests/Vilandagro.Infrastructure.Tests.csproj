@@ -57,6 +57,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Vilandagro.Core\Vilandagro.Core.csproj">
+      <Project>{de9f8d30-b329-452b-9b44-06d2bb6775b2}</Project>
+      <Name>Vilandagro.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Vilandagro.Infrastructure\Vilandagro.Infrastructure.csproj">
       <Project>{7cebbab1-9ef4-4e73-a177-bd4a3824ebea}</Project>
       <Name>Vilandagro.Infrastructure</Name>

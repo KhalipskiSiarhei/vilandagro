@@ -64,15 +64,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DifferentTypesOfQueries\EntitySQLViaEntityCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryTests.Add.cs" />
     <Compile Include="RepositoryTests.AddRange.cs" />
     <Compile Include="RepositoryTests.Any.cs" />
     <Compile Include="RepositoryTests.Delete.cs" />
     <Compile Include="RepositoryTests.DeleteRange.cs" />
+    <Compile Include="DifferentTypesOfQueries\EntitySQLViaObjectQuery.cs" />
     <Compile Include="RepositoryTests.Find.cs" />
     <Compile Include="RepositoryTests.GetAll.cs" />
     <Compile Include="RepositoryTests.Where.cs" />
+    <Compile Include="DifferentTypesOfQueries\SqlQueryViaExecuteStoreQuery.cs" />
     <Compile Include="TestFixtureBase.cs" />
   </ItemGroup>
   <ItemGroup>
