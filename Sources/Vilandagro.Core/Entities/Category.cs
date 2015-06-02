@@ -7,18 +7,14 @@ using System.Threading.Tasks;
 
 namespace Vilandagro.Core.Entities
 {
-    public class Category
+    public partial class Category
     {
         public int Id { get; set; }
 
-        [Required]
-        [StringLength(128)]
         public string Name { get; set; }
 
-        [StringLength(512)]
         public string Description { get; set; }
 
-        [StringLength(64)]
         public string Image { get; set; }
 
         /// <summary>

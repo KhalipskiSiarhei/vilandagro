@@ -58,7 +58,7 @@ namespace Vilandagro.Infrastructure.EF.Tests
             {
                 Description = "CategoryDescription1",
                 Image = "Image1",
-                Name = string.Empty,
+                Name = null,
             };
 
             Repo.AddRange(new[] { categoryToCreate1, categoryToCreate2 });

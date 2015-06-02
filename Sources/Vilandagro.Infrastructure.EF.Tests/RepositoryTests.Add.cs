@@ -12,7 +12,7 @@ namespace Vilandagro.Infrastructure.EF.Tests
     public partial class RepositoryTests
     {
         [Test]
-        public void AddCategory_DataValid_CateogryCreated()
+        public void AddCategory_DataValid_CategoryCreated()
         {
             var categoryToCreate = new Category()
             {
@@ -94,9 +94,16 @@ namespace Vilandagro.Infrastructure.EF.Tests
             Assert.IsNotNull(unitOfPrice);
             Assert.IsNotNull(productPrice);
             Assert.IsNotNull(springProductPrice);
+
+            // Get products via polymorphic query
+            var products = Repo.GetAll<Product>().ToList();
+            Assert.IsTrue(products.Count == 2);
+            var dbProduct = products.SingleOrDefault(p => p.Id == product.Id);
+            var dbSpringProduct = (SpringProduct)products.SingleOrDefault(p => p.Id == springProduct.Id);
+            Assert.IsNotNull(dbProduct);
+            Assert.IsNotNull(dbSpringProduct);
         }
 
-        [TestCase("", "Description", "Image")]
         [TestCase(null, "Description", "Image")]
         [TestCase("TooLongNameTooLongNameTooLongNameTooLongNameTooLongNameTooLongNameTooLongNameTooLongNameTooLongNameTooLongNameTooLongNameTooLongNameTooLongName", "Description", "Image")]
         [ExpectedException(typeof(DbEntityValidationException))]

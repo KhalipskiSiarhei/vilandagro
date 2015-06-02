@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace Vilandagro.Core.Entities
 {
-    public class ProductPrice
+    public partial class ProductPrice
     {
         public int Id { get; set; }
 
+        /// <summary>
+        /// Foreign key to the Product
+        /// </summary>
         public int ProductId { get; set; }
 
         /// <summary>
@@ -17,6 +20,9 @@ namespace Vilandagro.Core.Entities
         /// </summary>
         public int UnitOfPriceId { get; set; }
 
+        /// <summary>
+        /// Navigation property to the Product
+        /// </summary>
         public virtual Product Product { get; set; }
 
         /// <summary>

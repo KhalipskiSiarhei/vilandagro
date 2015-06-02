@@ -1,35 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
+﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Common.Logging;
 using Vilandagro.Core.Entities;
+using Vilandagro.Infrastructure.EF.Mappings;
 
 namespace Vilandagro.Infrastructure.EF
 {
-    public class VilandagroDbContext : DbContext
+    public partial class VilandagroDbContext : DbContext
     {
-        private static readonly ILog Log = LogManager.GetLogger<VilandagroDbContext>();
-
-        public VilandagroDbContext()
-            : base("VilandagroDatabase")
+        static VilandagroDbContext()
         {
-            Database.Log = Log.Debug;
             Database.SetInitializer<VilandagroDbContext>(null);
         }
 
-        public IDbSet<Category> Categories { get; set; }
-
-        public IDbSet<Product> Products { get; set; }
-
-        public IDbSet<UnitOfPrice> UnitsOfPrice { get; set; }
-
-        protected override void OnModelCreating(System.Data.Entity.DbModelBuilder modelBuilder)
+        public VilandagroDbContext()
+            : base("Name=VilandagroDatabase")
         {
+        }
+
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductPrice> ProductPrices { get; set; }
+        public DbSet<UnitOfPrice> UnitOfPrices { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Configurations.Add(new CategoryMap());
+            modelBuilder.Configurations.Add(new ProductMap());
+            modelBuilder.Configurations.Add(new ProductPriceMap());
+            modelBuilder.Configurations.Add(new SpringProductMap());
+            modelBuilder.Configurations.Add(new UnitOfPriceMap());
+
+            this.Database.Log = LogManager.GetLogger<ILog>().Debug;
+
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             base.OnModelCreating(modelBuilder);
         }
