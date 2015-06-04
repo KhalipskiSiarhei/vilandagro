@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace Vilandagro.Core
 {
@@ -41,11 +42,12 @@ namespace Vilandagro.Core
         T Find<T>(params object[] keys) where T : class;
 
         /// <summary>
-        /// Finds an entity matching the predicate
+        /// Find object by keys in async manner
         /// </summary>
-        /// <param name="predicate">The filter clause</param>
-        /// <returns>An entity matching the predicate</returns>
-        IQueryable<T> Find<T>(Expression<Func<T, bool>> predicate) where T : class;
+        /// <typeparam name="T"></typeparam>
+        /// <param name="keys"></param>
+        /// <returns></returns>
+        Task<T> FindAsync<T>(params object[] keys) where T : class;
 
         /// <summary>
         /// Determines if there are any entities matching the predicate
@@ -55,6 +57,14 @@ namespace Vilandagro.Core
         bool Any<T>(Expression<Func<T, bool>> predicate) where T : class;
 
         /// <summary>
+        /// Determines if there are any entities matching the predicate in async manner
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        Task<bool> AnyAsync<T>(Expression<Func<T, bool>> predicate) where T : class;
+
+        /// <summary>
         /// Returns the first entity that matches the predicate
         /// </summary>
         /// <param name="predicate">The filter clause</param>
@@ -62,11 +72,25 @@ namespace Vilandagro.Core
         T First<T>(Expression<Func<T, bool>> predicate) where T : class;
 
         /// <summary>
+        /// Returns the first entity that matches the predicate in async manner
+        /// </summary>
+        /// <param name="predicate">The filter clause</param>
+        /// <returns>An entity matching the predicate</returns>
+        Task<T> FirstAsync<T>(Expression<Func<T, bool>> predicate) where T : class;
+
+        /// <summary>
         /// Returns the first entity that matches the predicate else null
         /// </summary>
         /// <param name="predicate">The filter clause</param>
         /// <returns>An entity matching the predicate else null</returns>
         T FirstOrDefault<T>(Expression<Func<T, bool>> predicate) where T : class;
+
+        /// <summary>
+        /// Returns the first entity that matches the predicate else null in async mannger
+        /// </summary>
+        /// <param name="predicate">The filter clause</param>
+        /// <returns>An entity matching the predicate else null</returns>
+        Task<T> FirstOrDefaultAsync<T>(Expression<Func<T, bool>> predicate) where T : class;
 
         /// <summary>
         /// Adds a given entity to the context
@@ -116,5 +140,10 @@ namespace Vilandagro.Core
         /// Save changes
         /// </summary>
         void SaveChanges();
+
+        /// <summary>
+        /// Save changes in async mannger
+        /// </summary>
+        Task SaveChangesAsync();
     }
 }

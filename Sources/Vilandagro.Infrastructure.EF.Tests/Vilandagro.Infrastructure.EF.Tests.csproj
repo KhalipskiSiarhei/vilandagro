@@ -74,7 +74,9 @@
     <Compile Include="RepositoryTests.DeleteRange.cs" />
     <Compile Include="DifferentTypesOfQueries\EntitySQLViaObjectQuery.cs" />
     <Compile Include="RepositoryTests.Find.cs" />
+    <Compile Include="RepositoryTests.First.cs" />
     <Compile Include="RepositoryTests.GetAll.cs" />
+    <Compile Include="RepositoryTests.Save.cs" />
     <Compile Include="RepositoryTests.Where.cs" />
     <Compile Include="DifferentTypesOfQueries\SqlQueryViaExecuteStoreQuery.cs" />
     <Compile Include="TestFixtureBase.cs" />

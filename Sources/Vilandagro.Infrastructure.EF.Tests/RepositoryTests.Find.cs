@@ -47,38 +47,10 @@ namespace Vilandagro.Infrastructure.EF.Tests
         }
 
         [Test]
-        public void Find_OfCategoryByPredicate_EmptyResult()
+        public async void FindAsync_OfCategoryByKeys_EmptyResult()
         {
-            var result = Repo.Find<Category>(c => c.Id == 123).ToList();
-            CollectionAssert.IsEmpty(result);
-        }
-
-        [Test]
-        public void Find_OfProductByPredicate_EmptyResult()
-        {
-            var result = Repo.Find<Product>(c => c.Id == 123);
-            CollectionAssert.IsEmpty(result);
-        }
-
-        [Test]
-        public void Find_OfSpringProductByPredicate_EmptyResult()
-        {
-            var result = Repo.Find<SpringProduct>(c => c.Id == 123);
-            CollectionAssert.IsEmpty(result);
-        }
-
-        [Test]
-        public void Find_OfUnitOfPriceByPredicate_EmptyResult()
-        {
-            var result = Repo.Find<UnitOfPrice>(c => c.Id == 123);
-            CollectionAssert.IsEmpty(result);
-        }
-
-        [Test]
-        public void Find_OfProductPriceByPredicate_EmptyResult()
-        {
-            var result = Repo.Find<ProductPrice>(c => c.Id == 123);
-            CollectionAssert.IsEmpty(result);
+            var result = await Repo.FindAsync<Category>(123);
+            Assert.IsNull(result);
         }
     }
 }

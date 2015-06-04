@@ -44,5 +44,12 @@ namespace Vilandagro.Infrastructure.EF.Tests
             var result = Repo.Any<ProductPrice>(x => x.Id == 123);
             Assert.IsFalse(result);
         }
+
+        [Test]
+        public async void AnyAsync_OfSpringProductByKeys_EmptyResult()
+        {
+            var result = await Repo.AnyAsync<SpringProduct>(x => x.Id == 123);
+            Assert.IsFalse(result);
+        }
     }
 }

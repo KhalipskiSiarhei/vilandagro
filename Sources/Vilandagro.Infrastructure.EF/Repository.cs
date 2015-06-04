@@ -48,9 +48,9 @@ namespace Vilandagro.Infrastructure.EF
             return DbContext.Set<T>().Find(keys);
         }
 
-        public IQueryable<T> Find<T>(Expression<Func<T, bool>> predicate) where T : class
+        public Task<T> FindAsync<T>(params object[] keys) where T : class
         {
-            return GetAll<T>().Where(predicate).AsQueryable();
+            return DbContext.Set<T>().FindAsync(keys);
         }
 
         public bool Any<T>(Expression<Func<T, bool>> predicate) where T : class
@@ -58,14 +58,29 @@ namespace Vilandagro.Infrastructure.EF
             return GetAll<T>().Any(predicate);
         }
 
+        public Task<bool> AnyAsync<T>(Expression<Func<T, bool>> predicate) where T : class
+        {
+            return GetAll<T>().AnyAsync(predicate);
+        }
+
         public T First<T>(Expression<Func<T, bool>> predicate) where T : class
         {
             return GetAll<T>().Where(predicate).First();
         }
 
+        public Task<T> FirstAsync<T>(Expression<Func<T, bool>> predicate) where T : class
+        {
+            return GetAll<T>().Where(predicate).FirstAsync();
+        }
+
         public T FirstOrDefault<T>(Expression<Func<T, bool>> predicate) where T : class
         {
             return GetAll<T>().Where(predicate).FirstOrDefault();
+        }
+
+        public Task<T> FirstOrDefaultAsync<T>(Expression<Func<T, bool>> predicate) where T : class
+        {
+            return GetAll<T>().Where(predicate).FirstOrDefaultAsync();
         }
 
         public void Add<T>(T entity) where T : class
@@ -119,6 +134,11 @@ namespace Vilandagro.Infrastructure.EF
         public void SaveChanges()
         {
             DbContext.SaveChanges();
+        }
+
+        public Task SaveChangesAsync()
+        {
+            return DbContext.SaveChangesAsync();
         }
     }
 }
