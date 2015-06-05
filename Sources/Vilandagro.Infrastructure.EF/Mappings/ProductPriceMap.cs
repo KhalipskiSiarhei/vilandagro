@@ -10,12 +10,17 @@ namespace Vilandagro.Infrastructure.EF.Mappings
             // Primary Key
             this.HasKey(t => t.Id);
 
+            this.Property(t => t.Version)
+                .IsRequired()
+                .IsConcurrencyToken();
+
             // Properties
             // Table & Column Mappings
             this.ToTable("ProductPrice");
             this.Property(t => t.Id).HasColumnName("Id");
             this.Property(t => t.ProductId).HasColumnName("ProductId");
             this.Property(t => t.UnitOfPriceId).HasColumnName("UnitOfPriceId");
+            this.Property(t => t.Version).HasColumnName("Version");
 
             // Relationships
             this.HasRequired(t => t.Product)

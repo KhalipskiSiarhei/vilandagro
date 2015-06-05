@@ -1,5 +1,8 @@
 <stylecopresultscache>
   <version>12</version>
+  <project key="624616290">
+    <configuration>CODE_ANALYSIS;DEBUG;TRACE</configuration>
+  </project>
   <sourcecode name="AssemblyInfo.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014/04/01 10:18:24.000</styleCop>
@@ -96,7 +99,7 @@
     <timestamps>
       <styleCop>2014/04/01 10:18:24.000</styleCop>
       <settingsFile>2015/05/11 09:24:20.289</settingsFile>
-      <sourceFile>2015/03/12 19:37:17.506</sourceFile>
+      <sourceFile>2015/06/05 09:03:01.287</sourceFile>
       <parser>2014/04/01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014/04/01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>1157575881</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -119,7 +122,7 @@
     <timestamps>
       <styleCop>2014/04/01 10:18:24.000</styleCop>
       <settingsFile>2015/05/11 09:24:20.289</settingsFile>
-      <sourceFile>2015/03/12 19:37:17.507</sourceFile>
+      <sourceFile>2015/06/05 09:03:01.288</sourceFile>
       <parser>2014/04/01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014/04/01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>1157575881</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -142,7 +145,7 @@
     <timestamps>
       <styleCop>2014/04/01 10:18:24.000</styleCop>
       <settingsFile>2015/05/11 09:24:20.289</settingsFile>
-      <sourceFile>2015/03/12 19:37:17.509</sourceFile>
+      <sourceFile>2015/06/05 09:03:01.289</sourceFile>
       <parser>2014/04/01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014/04/01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>1157575881</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -161,7 +164,4 @@
     </timestamps>
     <violations />
   </sourcecode>
-  <project key="624616290">
-    <configuration>CODE_ANALYSIS;DEBUG;TRACE</configuration>
-  </project>
 </stylecopresultscache>

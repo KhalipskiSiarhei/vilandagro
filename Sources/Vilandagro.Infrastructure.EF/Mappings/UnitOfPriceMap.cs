@@ -14,15 +14,18 @@ namespace Vilandagro.Infrastructure.EF.Mappings
             this.Property(t => t.Name)
                 .IsRequired()
                 .HasMaxLength(64);
-
             this.Property(t => t.Description)
                 .HasMaxLength(128);
+            this.Property(t => t.Version)
+                .IsRequired()
+                .IsConcurrencyToken();
 
             // Table & Column Mappings
             this.ToTable("UnitOfPrice");
             this.Property(t => t.Id).HasColumnName("Id");
             this.Property(t => t.Name).HasColumnName("Name");
             this.Property(t => t.Description).HasColumnName("Description");
+            this.Property(t => t.Version).HasColumnName("Version");
         }
     }
 }

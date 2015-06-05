@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace Vilandagro.Core.Entities
 {
-    //[Table("SpringProduct")]
     public partial class SpringProduct : Product
     {
         public decimal Diametr { get; set; }

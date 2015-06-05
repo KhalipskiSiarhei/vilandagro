@@ -14,6 +14,8 @@ namespace Vilandagro.Core.Entities
 
         public string Description { get; set; }
 
+        public int Version { get; set; }
+
         /// <summary>
         /// Navigation property to prices of products
         /// </summary>

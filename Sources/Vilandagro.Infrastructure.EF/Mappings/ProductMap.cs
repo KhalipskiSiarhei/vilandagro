@@ -21,6 +21,10 @@ namespace Vilandagro.Infrastructure.EF.Mappings
             this.Property(t => t.Image)
                 .HasMaxLength(64);
 
+            this.Property(t => t.Version)
+                .IsRequired()
+                .IsConcurrencyToken();
+
             // Table & Column Mappings
             this.ToTable("Product");
             this.Property(t => t.Id).HasColumnName("Id");
@@ -28,6 +32,7 @@ namespace Vilandagro.Infrastructure.EF.Mappings
             this.Property(t => t.Name).HasColumnName("Name");
             this.Property(t => t.Description).HasColumnName("Description");
             this.Property(t => t.Image).HasColumnName("Image");
+            this.Property(t => t.Version).HasColumnName("Version");
 
             // Relationships
             this.HasRequired(t => t.Category)

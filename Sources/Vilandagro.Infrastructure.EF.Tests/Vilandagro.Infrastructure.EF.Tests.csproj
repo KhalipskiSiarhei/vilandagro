@@ -70,6 +70,7 @@
     <Compile Include="RepositoryTests.Add.cs" />
     <Compile Include="RepositoryTests.AddRange.cs" />
     <Compile Include="RepositoryTests.Any.cs" />
+    <Compile Include="RepositoryTests.Attach.cs" />
     <Compile Include="RepositoryTests.Delete.cs" />
     <Compile Include="RepositoryTests.DeleteRange.cs" />
     <Compile Include="DifferentTypesOfQueries\EntitySQLViaObjectQuery.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="RepositoryTests.First.cs" />
     <Compile Include="RepositoryTests.GetAll.cs" />
     <Compile Include="RepositoryTests.Save.cs" />
+    <Compile Include="RepositoryTests.SaveChanges.cs" />
     <Compile Include="RepositoryTests.Where.cs" />
     <Compile Include="DifferentTypesOfQueries\SqlQueryViaExecuteStoreQuery.cs" />
     <Compile Include="TestFixtureBase.cs" />

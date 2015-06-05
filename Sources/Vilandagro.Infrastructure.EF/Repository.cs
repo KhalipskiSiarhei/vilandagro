@@ -6,6 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Vilandagro.Core;
+using Vilandagro.Core.Entities;
 
 namespace Vilandagro.Infrastructure.EF
 {
@@ -129,6 +130,17 @@ namespace Vilandagro.Infrastructure.EF
         public void Attach<T>(T entity) where T : class
         {
             DbContext.Set<T>().Attach(entity);
+
+            var id = GetEntityId(entity);
+
+            if (id == 0)
+            {
+                DbContext.Entry(entity).State = EntityState.Added;
+            }
+            else if (id > 0)
+            {
+                DbContext.Entry(entity).State = EntityState.Modified;
+            }
         }
 
         public void SaveChanges()
@@ -139,6 +151,27 @@ namespace Vilandagro.Infrastructure.EF
         public Task SaveChangesAsync()
         {
             return DbContext.SaveChangesAsync();
+        }
+
+        protected internal int GetEntityId<T>(T entity) where T : class
+        {
+            var idProperty = (typeof (T).GetProperty("Id"));
+
+            if (idProperty != null)
+            {
+                var idValue = idProperty.GetValue(entity);
+
+                if (idValue is int)
+                {
+                    return (int) idValue;
+                }
+
+                throw new NotSupportedException(
+                    string.Format(
+                        "Entity of type={0} has Id property with type={1}. This type does not supported, {2} should be used only",
+                        typeof (T), idProperty.MemberType, typeof (int)));
+            }
+            return -1;
         }
     }
 }

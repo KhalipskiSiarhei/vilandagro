@@ -30,7 +30,7 @@ namespace Vilandagro.Infrastructure.EF.Tests.DifferentTypesOfQueries
         [Test]
         public void GetQuery()
         {
-            var sql = "SELECT c.Id, c.Name, c.Description, c.Image FROM Categories AS c";
+            var sql = "SELECT c.Id, c.Name, c.Description, c.Image, c.Version FROM Categories AS c";
             var categoriesQuery = _context.CreateQuery<Category>(sql);
             var categories = categoriesQuery.ToList();
         }
@@ -38,7 +38,7 @@ namespace Vilandagro.Infrastructure.EF.Tests.DifferentTypesOfQueries
         [Test]
         public void Where()
         {
-            var sql = "SELECT c.Id, c.Name, c.Description, c.Image FROM Categories AS c";
+            var sql = "SELECT c.Id, c.Name, c.Description, c.Image, c.Version FROM Categories AS c";
             var categoriesQuery = _context.CreateQuery<Category>(sql);
             var categories = categoriesQuery.Where(c => c.Name == "123").ToList();
         }

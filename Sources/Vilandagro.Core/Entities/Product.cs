@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace Vilandagro.Core.Entities
 {
-    //[Table("Product")]
     public partial class Product
     {
         public int Id { get; set; }
@@ -21,6 +20,8 @@ namespace Vilandagro.Core.Entities
         public int CategoryId { get; set; }
 
         public virtual Category Category { get; set; }
+
+        public int Version { get; set; }
 
         /// <summary>
         /// Navigation property to the prices of products

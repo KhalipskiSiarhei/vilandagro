@@ -25,6 +25,8 @@ namespace Vilandagro.Core.Entities
         /// </summary>
         public virtual Product Product { get; set; }
 
+        public int Version { get; set; }
+
         /// <summary>
         /// Navigation property to UnitOfPrice
         /// </summary>

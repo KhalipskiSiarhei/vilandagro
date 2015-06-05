@@ -1,5 +1,8 @@
 <stylecopresultscache>
   <version>12</version>
+  <project key="2005868095">
+    <configuration>CODE_ANALYSIS;DEBUG;TRACE</configuration>
+  </project>
   <sourcecode name="AssemblyInfo.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014/04/01 10:18:24.000</styleCop>
@@ -50,7 +53,7 @@
     <timestamps>
       <styleCop>2014/04/01 10:18:24.000</styleCop>
       <settingsFile>2015/05/11 09:24:20.289</settingsFile>
-      <sourceFile>2015/03/12 19:34:47.904</sourceFile>
+      <sourceFile>2015/06/05 09:02:52.782</sourceFile>
       <parser>2014/04/01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014/04/01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>1157575881</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -73,7 +76,7 @@
     <timestamps>
       <styleCop>2014/04/01 10:18:24.000</styleCop>
       <settingsFile>2015/05/11 09:24:20.289</settingsFile>
-      <sourceFile>2015/03/12 19:34:47.905</sourceFile>
+      <sourceFile>2015/06/05 09:02:52.783</sourceFile>
       <parser>2014/04/01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014/04/01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>1157575881</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -96,7 +99,7 @@
     <timestamps>
       <styleCop>2014/04/01 10:18:24.000</styleCop>
       <settingsFile>2015/05/11 09:24:20.289</settingsFile>
-      <sourceFile>2015/03/12 19:34:47.907</sourceFile>
+      <sourceFile>2015/06/05 09:02:52.788</sourceFile>
       <parser>2014/04/01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014/04/01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>1157575881</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -115,7 +118,4 @@
     </timestamps>
     <violations />
   </sourcecode>
-  <project key="2005868095">
-    <configuration>CODE_ANALYSIS;DEBUG;TRACE</configuration>
-  </project>
 </stylecopresultscache>

@@ -17,6 +17,8 @@ namespace Vilandagro.Core.Entities
 
         public string Image { get; set; }
 
+        public int Version { get; set; }
+
         /// <summary>
         /// Navigation property to products
         /// </summary>
