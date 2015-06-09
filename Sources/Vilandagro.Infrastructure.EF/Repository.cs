@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -19,7 +20,7 @@ namespace Vilandagro.Infrastructure.EF
             _dbContext = dbContext;
         }
 
-        protected DbContext DbContext
+        public DbContext DbContext
         {
             get { return _dbContext; }
         }
@@ -145,6 +146,46 @@ namespace Vilandagro.Infrastructure.EF
 
         public void SaveChanges()
         {
+            foreach (var dbEntity in DbContext.ChangeTracker.Entries().Where(x => x.State == EntityState.Added || x.State == EntityState.Modified))
+            {
+                if (dbEntity.State == EntityState.Added)
+                {
+                    var entity = dbEntity.Entity as IVersion;
+                    if (entity != null)
+                    {
+                        var iVersion = entity;
+                        iVersion.Version = 1;
+                    }
+                    else
+                    {
+                        var version = GetVersionProperty(dbEntity);
+
+                        if (version != null)
+                        {
+                            version.CurrentValue = 1;
+                        }
+                    }
+                }
+                else if (dbEntity.State == EntityState.Modified)
+                {
+                    var entity = dbEntity.Entity as IVersion;
+                    if (entity != null)
+                    {
+                        var iVersion = entity;
+                        iVersion.Version += 1;
+                    }
+                    else
+                    {
+                        var version = GetVersionProperty(dbEntity);
+
+                        if (version != null)
+                        {
+                            version.CurrentValue = (int)version.CurrentValue + 1;
+                        }
+                    }
+                }
+            }
+
             DbContext.SaveChanges();
         }
 
@@ -155,23 +196,36 @@ namespace Vilandagro.Infrastructure.EF
 
         protected internal int GetEntityId<T>(T entity) where T : class
         {
-            var idProperty = (typeof (T).GetProperty("Id"));
-
-            if (idProperty != null)
+            var iEntity = entity as IEntity;
+            if (iEntity != null)
             {
-                var idValue = idProperty.GetValue(entity);
-
-                if (idValue is int)
-                {
-                    return (int) idValue;
-                }
-
-                throw new NotSupportedException(
-                    string.Format(
-                        "Entity of type={0} has Id property with type={1}. This type does not supported, {2} should be used only",
-                        typeof (T), idProperty.MemberType, typeof (int)));
+                return iEntity.Id;
             }
-            return -1;
+            else
+            {
+                var idProperty = (typeof (T).GetProperty("Id"));
+
+                if (idProperty != null)
+                {
+                    var idValue = idProperty.GetValue(entity);
+
+                    if (idValue is int)
+                    {
+                        return (int) idValue;
+                    }
+
+                    throw new NotSupportedException(
+                        string.Format(
+                            "Entity of type={0} has Id property with type={1}. This type does not supported, {2} should be used only",
+                            typeof (T), idProperty.MemberType, typeof (int)));
+                }
+                return -1;
+            }
+        }
+
+        private DbPropertyEntry GetVersionProperty(DbEntityEntry dbEntry)
+        {
+            return dbEntry.Property("Version");
         }
     }
 }

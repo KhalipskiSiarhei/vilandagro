@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Vilandagro.Core.Entities
 {
-    public partial class UnitOfPrice
+    public partial class UnitOfPrice : IEntity, IVersion
     {
         public int Id { get; set; }
 

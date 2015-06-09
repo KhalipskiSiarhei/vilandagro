@@ -73,5 +73,31 @@ namespace Vilandagro.Infrastructure.EF.Tests
             Assert.IsNotNull(productPrice);
             Assert.IsNotNull(springProductPrice);
         }
+
+        [Test]
+        public void SaveChanges_UpdateExistedData_DataUpdated()
+        {
+            var categoryToCreate = new Category()
+            {
+                Description = "CategoryDescription",
+                Image = "Image",
+                Name = "Name",
+            };
+            Repo.Add(categoryToCreate);
+            Repo.SaveChanges();
+            Assert.IsTrue(categoryToCreate.Version == 1);
+
+            categoryToCreate.Description = "Hello world!!!";
+            Repo.SaveChanges();
+            Assert.IsTrue(categoryToCreate.Version == 2);
+
+            categoryToCreate.Description = "2345";
+            Repo.SaveChanges();
+            Assert.IsTrue(categoryToCreate.Version == 3);
+
+            var savedCategory = Repo.GetAll<Category>(c => c.Id == categoryToCreate.Id).Single();
+            Assert.IsTrue(savedCategory.Description == "2345");
+            Assert.IsTrue(savedCategory.Version == 3);
+        }
     }
 }

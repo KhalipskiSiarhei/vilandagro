@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Vilandagro.Core.Entities
 {
-    public partial class Category
+    public partial class Category : IEntity, IVersion
     {
         public int Id { get; set; }
 

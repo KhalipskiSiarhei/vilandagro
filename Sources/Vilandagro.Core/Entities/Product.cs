@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Vilandagro.Core.Entities
 {
-    public partial class Product
+    public partial class Product : IEntity, IVersion
     {
         public int Id { get; set; }
 
