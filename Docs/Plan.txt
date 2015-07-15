@@ -3,10 +3,10 @@ Vilandagro.ru. List of tasks
 2) - FxCop + StyleCop integration - done
 3) - Implement mockup and agree with Misha -in progress
 4) - DB investigation to allow working with EF and NH + free hosting without any server installation - done
-5) - Create DB structure with usage of sql-scripts - in progress
+5) - Create DB structure with usage of sql-scripts - done
 6) - Automate DB process creation - done
 7) - Unit-of-work pattern implementation
-8) - EF layer implementation (integration with UOF + Repository+Specification pattern implementation)
+8) - EF layer implementation (integration with UOF + Repository+Specification pattern implementation) - done
 9) - NH layer implementation (integration with UOF + Repository+Specification pattern implementation)
 10) - NoSql layer implementation
 11) - OWIN integration - partially done (for WebApi). It is necessary to implement for SignalR staff

@@ -50,9 +50,9 @@ namespace Vilandagro.Infrastructure.EF
             return DbContext.Set<T>().Find(keys);
         }
 
-        public Task<T> FindAsync<T>(params object[] keys) where T : class
+        public async Task<T> FindAsync<T>(params object[] keys) where T : class
         {
-            return DbContext.Set<T>().FindAsync(keys);
+            return await DbContext.Set<T>().FindAsync(keys);
         }
 
         public bool Any<T>(Expression<Func<T, bool>> predicate) where T : class
@@ -60,9 +60,9 @@ namespace Vilandagro.Infrastructure.EF
             return GetAll<T>().Any(predicate);
         }
 
-        public Task<bool> AnyAsync<T>(Expression<Func<T, bool>> predicate) where T : class
+        public async Task<bool> AnyAsync<T>(Expression<Func<T, bool>> predicate) where T : class
         {
-            return GetAll<T>().AnyAsync(predicate);
+            return await GetAll<T>().AnyAsync(predicate);
         }
 
         public T First<T>(Expression<Func<T, bool>> predicate) where T : class
@@ -70,9 +70,9 @@ namespace Vilandagro.Infrastructure.EF
             return GetAll<T>().Where(predicate).First();
         }
 
-        public Task<T> FirstAsync<T>(Expression<Func<T, bool>> predicate) where T : class
+        public async Task<T> FirstAsync<T>(Expression<Func<T, bool>> predicate) where T : class
         {
-            return GetAll<T>().Where(predicate).FirstAsync();
+            return await GetAll<T>().Where(predicate).FirstAsync();
         }
 
         public T FirstOrDefault<T>(Expression<Func<T, bool>> predicate) where T : class
@@ -80,9 +80,9 @@ namespace Vilandagro.Infrastructure.EF
             return GetAll<T>().Where(predicate).FirstOrDefault();
         }
 
-        public Task<T> FirstOrDefaultAsync<T>(Expression<Func<T, bool>> predicate) where T : class
+        public async Task<T> FirstOrDefaultAsync<T>(Expression<Func<T, bool>> predicate) where T : class
         {
-            return GetAll<T>().Where(predicate).FirstOrDefaultAsync();
+            return await GetAll<T>().Where(predicate).FirstOrDefaultAsync();
         }
 
         public void Add<T>(T entity) where T : class
@@ -144,7 +144,7 @@ namespace Vilandagro.Infrastructure.EF
             }
         }
 
-        public void SaveChanges()
+        public int SaveChanges()
         {
             foreach (var dbEntity in DbContext.ChangeTracker.Entries().Where(x => x.State == EntityState.Added || x.State == EntityState.Modified))
             {
@@ -186,12 +186,12 @@ namespace Vilandagro.Infrastructure.EF
                 }
             }
 
-            DbContext.SaveChanges();
+            return DbContext.SaveChanges();
         }
 
-        public Task SaveChangesAsync()
+        public async Task<int> SaveChangesAsync()
         {
-            return DbContext.SaveChangesAsync();
+            return await DbContext.SaveChangesAsync();
         }
 
         protected internal int GetEntityId<T>(T entity) where T : class

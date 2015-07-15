@@ -139,11 +139,11 @@ namespace Vilandagro.Core
         /// <summary>
         /// Save changes
         /// </summary>
-        void SaveChanges();
+        int SaveChanges();
 
         /// <summary>
         /// Save changes in async mannger
         /// </summary>
-        Task SaveChangesAsync();
+        Task<int> SaveChangesAsync();
     }
 }

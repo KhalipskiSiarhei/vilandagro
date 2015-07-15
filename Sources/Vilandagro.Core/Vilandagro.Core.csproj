@@ -60,6 +60,8 @@
     <Compile Include="Entities\ProductPrice.cs" />
     <Compile Include="Entities\SpringProduct.cs" />
     <Compile Include="Entities\UnitOfPrice.cs" />
+    <Compile Include="Exceptions\BusinessException.cs" />
+    <Compile Include="Exceptions\NotFoundException.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="IRequestAware.cs" />
     <Compile Include="Monadas.cs" />

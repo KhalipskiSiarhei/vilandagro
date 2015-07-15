@@ -57,8 +57,9 @@ namespace Vilandagro.Infrastructure.EF.Tests
             Repo.Add(unitOfPriceToCreate);
             Repo.Add(productPriceToCreate);
             Repo.Add(springProductPriceToCreate);
-            await Repo.SaveChangesAsync();
+            var affectedRowsCount = await Repo.SaveChangesAsync();
 
+            Assert.IsTrue(affectedRowsCount > 0);
             var category = Repo.Where<Category>(x => x.Name == "Name").Single();
             var product = category.Products.Single(p => p.Name == productToCreate.Name);
             var springProduct = category.Products.Single(p => p.Name == springProductToCreate.Name);
@@ -88,7 +89,7 @@ namespace Vilandagro.Infrastructure.EF.Tests
             Assert.IsTrue(categoryToCreate.Version == 1);
 
             categoryToCreate.Description = "Hello world!!!";
-            Repo.SaveChanges();
+            Assert.IsTrue(Repo.SaveChanges() > 0);
             Assert.IsTrue(categoryToCreate.Version == 2);
 
             categoryToCreate.Description = "2345";
