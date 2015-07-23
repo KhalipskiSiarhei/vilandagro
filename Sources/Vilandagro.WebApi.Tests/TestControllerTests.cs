@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using NUnit.Framework;
+using Vilandagro.Core.Entities;
 
 namespace Vilandagro.WebApi.Tests
 {
@@ -22,6 +23,27 @@ namespace Vilandagro.WebApi.Tests
             // Asserts
             responce.EnsureSuccessStatusCode();
             var result = responce.Content.ReadAsAsync<string[]>().Result;
+            Assert.IsTrue(result.Length == 2);
+            Assert.IsTrue(result.Contains("value11"));
+            Assert.IsTrue(result.Contains("value22"));
+        }
+
+        [Test]
+        public async void GetGet_OneTransactionIsUsed()
+        {
+            // Act
+            var responce1 = await Get("/api/test");
+            var responce2 = await Get("/api/test");
+
+            // Asserts
+            responce1.EnsureSuccessStatusCode();
+            var result = responce1.Content.ReadAsAsync<string[]>().Result;
+            Assert.IsTrue(result.Length == 2);
+            Assert.IsTrue(result.Contains("value11"));
+            Assert.IsTrue(result.Contains("value22"));
+
+            responce2.EnsureSuccessStatusCode();
+            result = responce2.Content.ReadAsAsync<string[]>().Result;
             Assert.IsTrue(result.Length == 2);
             Assert.IsTrue(result.Contains("value11"));
             Assert.IsTrue(result.Contains("value22"));
@@ -95,6 +117,30 @@ namespace Vilandagro.WebApi.Tests
             Assert.IsNull(httpError.StackTrace);
             Assert.IsNull(httpError.InnerException);
             Assert.IsNull(httpError.MessageDetail);
+        }
+
+        [Test]
+        public async void AddNewDataSomeTimes()
+        {
+            var categories1Responce = await Get("/api/test/categories");
+            var newCategory1Responce = await Get("/api/test/addNewCategory");
+            var newCategory2Responce = await Get("/api/test/addNewCategory");
+            var categories2Responce = await Get("/api/test/categories");
+
+            categories1Responce.EnsureSuccessStatusCode();
+            newCategory1Responce.EnsureSuccessStatusCode();
+            newCategory2Responce.EnsureSuccessStatusCode();
+            categories2Responce.EnsureSuccessStatusCode();
+            var categories1 = categories1Responce.Content.ReadAsAsync<List<Category>>().Result;
+            var newCategory1 = newCategory1Responce.Content.ReadAsAsync<Category>().Result;
+            var newCategory2 = newCategory2Responce.Content.ReadAsAsync<Category>().Result;
+            var categories2 = categories2Responce.Content.ReadAsAsync<List<Category>>().Result;
+            CollectionAssert.IsEmpty(categories1);
+            Assert.IsTrue(newCategory1.Id > 0);
+            Assert.IsTrue(newCategory2.Id > 0);
+            Assert.IsTrue(categories2.Count - categories1.Count == 2);
+            Assert.IsTrue(categories2.Any(c => c.Id == newCategory1.Id));
+            Assert.IsTrue(categories2.Any(c => c.Id == newCategory2.Id));
         }
     }
 }

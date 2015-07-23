@@ -14,12 +14,14 @@ using Vilandagro.WebApi.DependencyResolution;
 
 namespace Vilandagro.WebApi.Tests
 {
-    [TestFixture]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable"), TestFixture]
     public class StructureMapDependencyResolverTests
     {
         private ILog _log = LogManager.GetLogger<StructureMapDependencyResolverTests>();
 
         private IContainer _container;
+
+        private IRequestAware _requestAware;
 
         private StructureMapDependencyResolver _resolver;
 
@@ -27,7 +29,8 @@ namespace Vilandagro.WebApi.Tests
         public void SetUp()
         {
             _container = StructureMapContainer.GetContainer();
-            _resolver = new StructureMapDependencyResolver(_container);
+            _requestAware = _container.GetInstance<IRequestAware>();
+            _resolver = new StructureMapDependencyResolver(_requestAware, _container, _log);
         }
 
         [TearDown]
@@ -80,16 +83,16 @@ namespace Vilandagro.WebApi.Tests
             Assert.IsTrue(dependencyScope.Container != _resolver.Container);
             _log.Info(dependencyScope.Container.WhatDoIHave());
             _log.Info(_resolver.Container.WhatDoIHave());
-            Assert.IsTrue(dependencyScope.Container.WhatDoIHave().Replace("Profile is 'DEFAULT'\r\n", string.Empty) ==
+            Assert.IsTrue(dependencyScope.Container.WhatDoIHave().Replace("Nested Container: DEFAULT - Nested\r\n", string.Empty) ==
                           _resolver.Container.WhatDoIHave());
         }
 
         [Test]
-        public void BeginScope_ChangesInChildContainerDoNotAffectParentController()
+        public void BeginScope_ChangesInNestedContainerDoNotAffectParentController()
         {
             var dependencyScope = (StructureMapDependencyResolver)_resolver.BeginScope();
 
-            dependencyScope.Container.Configure(c => c.For<IRequestAware>().Use<ThreadRequestAware>().Singleton());
+            dependencyScope.Container.Configure(c => c.For<IRequestAware>().Use<ThreadRequestAware>().Transient());
             Assert.IsTrue(dependencyScope.GetService(typeof(IRequestAware)) is ThreadRequestAware);
             Assert.IsTrue(_resolver.GetService(typeof(IRequestAware)) is WebRequestAware);
         }

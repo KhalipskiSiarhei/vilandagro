@@ -14,17 +14,7 @@ namespace Vilandagro.Infrastructure.EF.Tests.DifferentTypesOfQueries
         protected override void SetUp()
         {
             base.SetUp();
-            _context = ((IObjectContextAdapter)_dbContext).ObjectContext;
-        }
-
-        protected override void TearDown()
-        {
-            if (_context != null)
-            {
-                _context.Dispose();
-                _context = null;
-            }
-            base.TearDown();
+            _context = ((IObjectContextAdapter)Repo.DbContext).ObjectContext;
         }
 
         [Test]

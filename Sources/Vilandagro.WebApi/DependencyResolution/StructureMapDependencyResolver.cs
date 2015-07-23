@@ -2,47 +2,42 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http.Dependencies;
+using Common.Logging;
 using StructureMap;
+using Vilandagro.Core;
 
 namespace Vilandagro.WebApi.DependencyResolution
 {
-    public class StructureMapDependencyResolver : IDependencyResolver
+    public class StructureMapDependencyResolver : StructureMapDependencyScope, IDependencyResolver
     {
-        private IContainer _container;
+        private const string ChildScopeKey = "8CA0DB2B-21BB-4D24-B8D6-C8C7F9833806";
 
-        public StructureMapDependencyResolver(IContainer container)
+        private readonly IRequestAware _requestAware;
+
+        public StructureMapDependencyResolver(IRequestAware requestAware, IContainer container, ILog log)
+            : base(container, log)
         {
-            _container = container;
+            _requestAware = requestAware;
         }
 
-        protected internal IContainer Container
+        protected override void Dispose(bool disposing)
         {
-            get { return _container; }
-            set { _container = value; }
-        }
-
-        public void Dispose()
-        {
-            if (Container != null)
+            if (disposing)
             {
-                Container.Dispose();
-                Container = null;
+                _requestAware[ChildScopeKey] = null;
             }
-        }
 
-        public object GetService(Type serviceType)
-        {
-            return Container.TryGetInstance(serviceType);
-        }
-
-        public IEnumerable<object> GetServices(Type serviceType)
-        {
-            return Container.GetAllInstances(serviceType).Cast<object>();
+            base.Dispose(disposing);
         }
 
         public IDependencyScope BeginScope()
         {
-            return new StructureMapDependencyResolver(Container.CreateChildContainer());
+            if (!(_requestAware[ChildScopeKey] is IDependencyScope))
+            {
+                _requestAware[ChildScopeKey] = new StructureMapDependencyResolver(_requestAware, Container.GetNestedContainer(), _log);
+                _log.Debug("DependencyScope has been created");
+            }
+            return (IDependencyScope) _requestAware[ChildScopeKey];
         }
     }
 }

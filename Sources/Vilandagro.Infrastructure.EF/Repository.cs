@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -13,7 +14,14 @@ namespace Vilandagro.Infrastructure.EF
 {
     public class Repository : IRepository
     {
-        private DbContext _dbContext;
+        private IRequestAware _requestAware = null;
+
+        private DbContext _dbContext = null;
+
+        public Repository(IRequestAware requestAware)
+        {
+            _requestAware = requestAware;
+        }
 
         public Repository(DbContext dbContext)
         {
@@ -22,7 +30,17 @@ namespace Vilandagro.Infrastructure.EF
 
         public DbContext DbContext
         {
-            get { return _dbContext; }
+            get
+            {
+                if (_requestAware == null)
+                {
+                    return _dbContext;
+                }
+                else
+                {
+                    return (DbContext)_requestAware[DbContextManager.DbContextKey];
+                }
+            }
         }
 
         public IQueryable GetAll(Type typeToGet)
@@ -227,5 +245,32 @@ namespace Vilandagro.Infrastructure.EF
         {
             return dbEntry.Property("Version");
         }
+
+        #region IDisposable
+        ~Repository() 
+        {
+            // Finalizer calls Dispose(false)
+            Dispose(false);
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (_dbContext != null)
+                {
+                    _dbContext.Dispose();
+                    _dbContext = null;
+                }                
+            }
+        }
+
+        #endregion
     }
 }

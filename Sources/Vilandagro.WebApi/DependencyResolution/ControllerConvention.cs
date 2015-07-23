@@ -18,7 +18,7 @@ namespace Vilandagro.WebApi.DependencyResolution
         {
             if (type.CanBeCastTo<ApiController>() && !type.IsAbstract)
             {
-                registry.For(type).LifecycleIs(new UniquePerRequestLifecycle());
+                registry.For(type).LifecycleIs(new TransientLifecycle());
             }
         }
 

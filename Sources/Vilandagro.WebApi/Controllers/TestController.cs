@@ -1,16 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using Vilandagro.Core;
+using Vilandagro.Core.Entities;
 using Vilandagro.Core.Exceptions;
 
 namespace Vilandagro.WebApi.Controllers
 {
     public class TestController : ApiController
     {
+        private readonly IRepository _repository;
+
+        public TestController(IRepository repository)
+        {
+            _repository = repository;
+        }
+
         // GET api/<controller>
         [HttpGet]
         public async Task<string[]> Get()
@@ -46,6 +56,24 @@ namespace Vilandagro.WebApi.Controllers
             ModelState.AddModelError("field1", "Error message1");
             ModelState.AddModelError("field2", "Error message2");
             throw new ModelStateException(ModelState);
+        }
+
+        [HttpGet]
+        [Route("api/test/addNewCategory")]
+        public async Task<Category> AddNewCategory()
+        {
+            var newCategory = new Category() { Description = "Description", Image = "Image", Name = "Name" };
+            _repository.Add(newCategory);
+            await _repository.SaveChangesAsync();
+
+            return newCategory;
+        }
+
+        [HttpGet]
+        [Route("api/test/categories")]
+        public async Task<List<Category>> GetCategories()
+        {
+            return await _repository.GetAll<Category>().ToListAsync();
         }
     }
 }

@@ -7,6 +7,7 @@ using Vilandagro.Core.Exceptions;
 
 namespace Vilandagro.WebApi
 {
+    [Serializable]
     public class ModelStateException : BusinessException
     {
         public ModelStateException(ModelStateDictionary modelState)

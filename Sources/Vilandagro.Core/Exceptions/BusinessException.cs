@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Vilandagro.Core.Exceptions
 {
+    [Serializable]
     public class BusinessException : Exception
     {
         public BusinessException()

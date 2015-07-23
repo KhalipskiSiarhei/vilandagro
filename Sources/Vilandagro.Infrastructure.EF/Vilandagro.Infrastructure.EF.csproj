@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DbContextManager.cs" />
     <Compile Include="Mappings\CategoryMap.cs" />
     <Compile Include="Mappings\ProductMap.cs" />
     <Compile Include="Mappings\ProductPriceMap.cs" />

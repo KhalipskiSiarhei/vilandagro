@@ -15,9 +15,8 @@ namespace Vilandagro.Infrastructure.EF.Tests
         protected static readonly ILog Log = LogManager.GetLogger<ILog>();
 
         protected VilandagroDbContext _dbContext;
-        private DbContextTransaction _transaction;
-        private Repository _repo;
 
+        private Repository _repo;
         protected Repository Repo
         {
             get { return _repo; }
@@ -27,25 +26,23 @@ namespace Vilandagro.Infrastructure.EF.Tests
         protected virtual void SetUp()
         {
             _dbContext = new VilandagroDbContext();
-            _transaction = _dbContext.Database.BeginTransaction();
-
             _repo = new Repository(_dbContext);
+
+            _dbContext.Database.BeginTransaction();
         }
 
         [TearDown]
         protected virtual void TearDown()
         {
-            if (_transaction != null)
+            if (_dbContext.Database.CurrentTransaction != null)
             {
-                _transaction.Rollback();
-                _transaction.Dispose();
-                _transaction = null;
+                _dbContext.Database.CurrentTransaction.Rollback();
             }
 
-            if (_dbContext != null)
+            if (_repo != null)
             {
-                _dbContext.Dispose();
-                _dbContext = null;
+                _repo.Dispose();
+                _repo = null;
             }
         }
     }

@@ -8,12 +8,32 @@ using Vilandagro.Core;
 
 namespace Vilandagro.Infrastructure
 {
-    public class WebRequestAware : IRequestAware
+    public class WebRequestAware : CustomRequestAware
     {
-        public object this[string key]
+        public override object this[string key]
         {
-            get { return HttpContext.Current.Items[key]; }
-            set { HttpContext.Current.Items[key] = value; }
+            get
+            {
+                if (HttpContext.Current != null)
+                {
+                    return HttpContext.Current.Items[key];
+                }
+                else
+                {
+                    return base[key];
+                }
+            }
+            set
+            {
+                if (HttpContext.Current != null)
+                {
+                    HttpContext.Current.Items[key] = value;
+                }
+                else
+                {
+                    base[key] = value;
+                }
+            }
         }
 
         public T GetValue<T>(string key) where T : class

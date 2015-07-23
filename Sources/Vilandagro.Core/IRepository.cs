@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Vilandagro.Core
 {
-    public interface IRepository
+    public interface IRepository : IDisposable
     {
         /// <summary>
         /// Get all entities

@@ -8,14 +8,14 @@ using NUnit.Framework;
 namespace Vilandagro.Infrastructure.Tests
 {
     [TestFixture]
-    public class StaticRequestAwareTests
+    public class CustomRequestAwareTests
     {
-        private StaticRequestAware _requestAware;
+        private CustomRequestAware _requestAware;
 
         [SetUp]
         public void SetUp()
         {
-            _requestAware = new StaticRequestAware();
+            _requestAware = new CustomRequestAware();
         }
 
         [Test]

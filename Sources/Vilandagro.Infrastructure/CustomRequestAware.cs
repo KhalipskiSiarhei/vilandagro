@@ -7,18 +7,18 @@ using Vilandagro.Core;
 
 namespace Vilandagro.Infrastructure
 {
-    public class StaticRequestAware : IRequestAware
+    public class CustomRequestAware : IRequestAware
     {
         private static readonly object ObjSync = new object();
 
-        private static Dictionary<string, object> _keys;
+        private Dictionary<string, object> _keys;
 
-        static StaticRequestAware()
+        public CustomRequestAware()
         {
             _keys = new Dictionary<string, object>();
         }
 
-        public object this[string key]
+        public virtual object this[string key]
         {
             get
             {

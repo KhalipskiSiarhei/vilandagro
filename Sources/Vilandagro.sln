@@ -7,13 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vilandagro.Core", "Vilandag
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vilandagro.Infrastructure.EF", "Vilandagro.Infrastructure.EF\Vilandagro.Infrastructure.EF.csproj", "{137168BD-15EC-4229-ABC8-55E908D06E7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vilandagro.Infrastructure.NH", "Vilandagro.Infrastructure.NH\Vilandagro.Infrastructure.NH.csproj", "{213970D8-1F8C-4573-B8CD-E4AF89D31FDF}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vilandagro.Infrastructure", "Vilandagro.Infrastructure\Vilandagro.Infrastructure.csproj", "{7CEBBAB1-9EF4-4E73-A177-BD4A3824EBEA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vilandagro.Infrastructure.EF.Tests", "Vilandagro.Infrastructure.EF.Tests\Vilandagro.Infrastructure.EF.Tests.csproj", "{8442F30D-E235-437F-B294-7048185813E4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vilandagro.Infrastructure.NH.Tests", "Vilandagro.Infrastructure.NH.Tests\Vilandagro.Infrastructure.NH.Tests.csproj", "{0E601447-2AEC-464E-B557-706ACE38F9C4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vilandagro.Infrastructure.Tests", "Vilandagro.Infrastructure.Tests\Vilandagro.Infrastructure.Tests.csproj", "{CC2C4BAB-1E9D-40B6-88AF-9D7AF5489BC1}"
 EndProject
@@ -50,10 +46,6 @@ Global
 		{137168BD-15EC-4229-ABC8-55E908D06E7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{137168BD-15EC-4229-ABC8-55E908D06E7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{137168BD-15EC-4229-ABC8-55E908D06E7C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{213970D8-1F8C-4573-B8CD-E4AF89D31FDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{213970D8-1F8C-4573-B8CD-E4AF89D31FDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{213970D8-1F8C-4573-B8CD-E4AF89D31FDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{213970D8-1F8C-4573-B8CD-E4AF89D31FDF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7CEBBAB1-9EF4-4E73-A177-BD4A3824EBEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7CEBBAB1-9EF4-4E73-A177-BD4A3824EBEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CEBBAB1-9EF4-4E73-A177-BD4A3824EBEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -62,10 +54,6 @@ Global
 		{8442F30D-E235-437F-B294-7048185813E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8442F30D-E235-437F-B294-7048185813E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8442F30D-E235-437F-B294-7048185813E4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0E601447-2AEC-464E-B557-706ACE38F9C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0E601447-2AEC-464E-B557-706ACE38F9C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0E601447-2AEC-464E-B557-706ACE38F9C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0E601447-2AEC-464E-B557-706ACE38F9C4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CC2C4BAB-1E9D-40B6-88AF-9D7AF5489BC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CC2C4BAB-1E9D-40B6-88AF-9D7AF5489BC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC2C4BAB-1E9D-40B6-88AF-9D7AF5489BC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -100,7 +88,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8442F30D-E235-437F-B294-7048185813E4} = {F908BE0D-3AF7-413A-B59B-E464DF10C01B}
-		{0E601447-2AEC-464E-B557-706ACE38F9C4} = {F908BE0D-3AF7-413A-B59B-E464DF10C01B}
 		{CC2C4BAB-1E9D-40B6-88AF-9D7AF5489BC1} = {F908BE0D-3AF7-413A-B59B-E464DF10C01B}
 		{A5B8D439-57B4-45F2-9FC6-62B44447DFA1} = {F908BE0D-3AF7-413A-B59B-E464DF10C01B}
 		{71F5059A-A1FF-456F-9E27-1A40923E5CAF} = {F908BE0D-3AF7-413A-B59B-E464DF10C01B}
