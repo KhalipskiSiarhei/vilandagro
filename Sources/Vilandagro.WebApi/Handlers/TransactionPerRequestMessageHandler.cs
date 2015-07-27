@@ -36,6 +36,7 @@ namespace Vilandagro.WebApi.Handlers
                 _dbContextManager.CreateDbContext();
                 isContextCreated = true;
             }
+
             if (!_dbContextManager.IsOpenedTransaction())
             {
                 _dbContextManager.BeginTransaction();

@@ -14,8 +14,7 @@ namespace Vilandagro.WebApi.Tests
         public void Configuration(IAppBuilder app)
         {
             var config = new HttpConfiguration();
-            WebApiConfig.Register(config);
-            app.UseWebApi(config);
+            app.UseWebApi(WebApiConfig.RegisterServerWithConfiguraton(config));
         }
     }
 }

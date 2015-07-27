@@ -21,16 +21,13 @@ namespace Vilandagro.WebApi.Tests
 
         private IContainer _container;
 
-        private IRequestAware _requestAware;
-
         private StructureMapDependencyResolver _resolver;
 
         [SetUp]
         public void SetUp()
         {
             _container = StructureMapContainer.GetContainer();
-            _requestAware = _container.GetInstance<IRequestAware>();
-            _resolver = new StructureMapDependencyResolver(_requestAware, _container, _log);
+            _resolver = new StructureMapDependencyResolver(_container, _log);
         }
 
         [TearDown]

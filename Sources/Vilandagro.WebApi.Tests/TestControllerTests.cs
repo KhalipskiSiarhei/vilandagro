@@ -123,8 +123,8 @@ namespace Vilandagro.WebApi.Tests
         public async void AddNewDataSomeTimes()
         {
             var categories1Responce = await Get("/api/test/categories");
-            var newCategory1Responce = await Get("/api/test/addNewCategory");
-            var newCategory2Responce = await Get("/api/test/addNewCategory");
+            var newCategory1Responce = await Post("/api/test/addNewCategory", new StringContent(string.Empty));
+            var newCategory2Responce = await Post("/api/test/addNewCategory", new StringContent(string.Empty));
             var categories2Responce = await Get("/api/test/categories");
 
             categories1Responce.EnsureSuccessStatusCode();
@@ -132,15 +132,54 @@ namespace Vilandagro.WebApi.Tests
             newCategory2Responce.EnsureSuccessStatusCode();
             categories2Responce.EnsureSuccessStatusCode();
             var categories1 = categories1Responce.Content.ReadAsAsync<List<Category>>().Result;
-            var newCategory1 = newCategory1Responce.Content.ReadAsAsync<Category>().Result;
-            var newCategory2 = newCategory2Responce.Content.ReadAsAsync<Category>().Result;
+            var newCategory1Id = newCategory1Responce.Content.ReadAsAsync<int>().Result;
+            var newCategory2Id = newCategory2Responce.Content.ReadAsAsync<int>().Result;
             var categories2 = categories2Responce.Content.ReadAsAsync<List<Category>>().Result;
             CollectionAssert.IsEmpty(categories1);
-            Assert.IsTrue(newCategory1.Id > 0);
-            Assert.IsTrue(newCategory2.Id > 0);
+            Assert.IsTrue(newCategory1Id > 0);
+            Assert.IsTrue(newCategory2Id > 0);
             Assert.IsTrue(categories2.Count - categories1.Count == 2);
-            Assert.IsTrue(categories2.Any(c => c.Id == newCategory1.Id));
-            Assert.IsTrue(categories2.Any(c => c.Id == newCategory2.Id));
+            Assert.IsTrue(categories2.Any(c => c.Id == newCategory1Id));
+            Assert.IsTrue(categories2.Any(c => c.Id == newCategory2Id));
+        }
+
+        [Test]
+        public async void Batch()
+        {
+            //Create a request to query for customers
+            HttpRequestMessage categories1Request = new HttpRequestMessage(HttpMethod.Get,
+                string.Concat(WebApiStarter.WebApiDefaultAddress, "api/test/categories"));
+            //Create a message to add a customer
+            HttpRequestMessage addNewCategoryRequest = new HttpRequestMessage(HttpMethod.Post,
+                string.Concat(WebApiStarter.WebApiDefaultAddress, "api/test/addNewCategory"));
+            //Create a request to query for customers
+            HttpRequestMessage categories2Request = new HttpRequestMessage(HttpMethod.Get,
+                string.Concat(WebApiStarter.WebApiDefaultAddress, "api/test/categories"));
+
+            HttpMessageContent categories1Content = new HttpMessageContent(categories1Request);
+            HttpMessageContent addNewCategoryContent = new HttpMessageContent(addNewCategoryRequest);
+            HttpMessageContent categories2Content = new HttpMessageContent(categories2Request);
+
+            MultipartContent batchRequestContent = new MultipartContent("mixed", "batch_" + Guid.NewGuid());
+            batchRequestContent.Add(categories1Content);
+            batchRequestContent.Add(addNewCategoryContent);
+            batchRequestContent.Add(categories2Content);
+
+            var batchResponse = await Post("/api/batch", batchRequestContent);
+            MultipartMemoryStreamProvider batchResponseContent = await batchResponse.Content.ReadAsMultipartAsync();
+            HttpResponseMessage categories1Rresponse = await batchResponseContent.Contents[0].ReadAsHttpResponseMessageAsync();
+            HttpResponseMessage addNewCategoryRresponse = await batchResponseContent.Contents[1].ReadAsHttpResponseMessageAsync();
+            HttpResponseMessage categories2Rresponse = await batchResponseContent.Contents[2].ReadAsHttpResponseMessageAsync();
+
+            Assert.IsTrue(categories1Rresponse.StatusCode == HttpStatusCode.OK);
+            Assert.IsTrue(addNewCategoryRresponse.StatusCode == HttpStatusCode.OK);
+            Assert.IsTrue(categories2Rresponse.StatusCode == HttpStatusCode.OK);
+
+            CollectionAssert.IsEmpty(categories1Rresponse.Content.ReadAsAsync<List<Category>>().Result);
+            var newCategoryId = addNewCategoryRresponse.Content.ReadAsAsync<int>().Result;
+            var categories = categories2Rresponse.Content.ReadAsAsync<List<Category>>().Result;
+            CollectionAssert.IsNotEmpty(categories);
+            Assert.IsTrue(categories.Any(c => c.Id == newCategoryId));
         }
     }
 }

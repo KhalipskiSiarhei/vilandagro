@@ -11,6 +11,7 @@ using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
 using System.Web.Http.Results;
 using Vilandagro.Core.Exceptions;
+using Vilandagro.Core;
 
 namespace Vilandagro.WebApi.Handlers
 {
@@ -20,7 +21,9 @@ namespace Vilandagro.WebApi.Handlers
 
         public Task HandleAsync(ExceptionHandlerContext context, CancellationToken cancellationToken)
         {
-            var controller = (ApiController) context.ExceptionContext.ControllerContext.Controller;
+            var controller =
+                (ApiController)
+                    context.With(c => c.ExceptionContext).With(c => c.ControllerContext).With(c => c.Controller);
             HttpResponseMessage responce = null;
 
             if (context.Exception is NotFoundException)

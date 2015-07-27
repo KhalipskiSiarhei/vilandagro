@@ -66,6 +66,17 @@ namespace Vilandagro.WebApi.Tests
             }
         }
 
+        protected async Task<HttpResponseMessage> Post(string relativePath, HttpContent content)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                return
+                    await
+                        httpClient.PostAsync(
+                            GetRequesturl(WebApiStarter.WebApiDefaultAddress, relativePath, string.Empty), content);
+            }
+        }
+
         private string GetRequesturl(string baseAddress, string relativePath, string args)
         {
             return string.Concat(baseAddress, relativePath, args);

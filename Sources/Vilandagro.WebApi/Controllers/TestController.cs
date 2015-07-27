@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using Vilandagro.Core;
 using Vilandagro.Core.Entities;
@@ -58,15 +59,15 @@ namespace Vilandagro.WebApi.Controllers
             throw new ModelStateException(ModelState);
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("api/test/addNewCategory")]
-        public async Task<Category> AddNewCategory()
+        public async Task<int> AddNewCategory()
         {
             var newCategory = new Category() { Description = "Description", Image = "Image", Name = "Name" };
             _repository.Add(newCategory);
             await _repository.SaveChangesAsync();
 
-            return newCategory;
+            return newCategory.Id;
         }
 
         [HttpGet]

@@ -42,8 +42,6 @@ namespace Vilandagro.WebApi.DependencyResolution
         {
             Dispose(true);
             GC.SuppressFinalize(this);
-
-            _log.Debug("DependencyScope has been disposed");
         }
         // NOTE: Leave out the finalizer altogether if this class doesn't 
         // own unmanaged resources itself, but leave the other methods
