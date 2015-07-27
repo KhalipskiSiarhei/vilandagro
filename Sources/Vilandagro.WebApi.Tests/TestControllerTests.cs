@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using NUnit.Framework;
 using Vilandagro.Core.Entities;
+using Vilandagro.WebApi.Handlers;
 
 namespace Vilandagro.WebApi.Tests
 {
@@ -143,8 +144,10 @@ namespace Vilandagro.WebApi.Tests
             Assert.IsTrue(categories2.Any(c => c.Id == newCategory2Id));
         }
 
-        [Test]
-        public async void Batch()
+        [TestCase("PerBatch")]
+        [TestCase("PerRequest")]
+        [TestCase("")]
+        public async void Batch(string transactionPattern)
         {
             //Create a request to query for customers
             HttpRequestMessage categories1Request = new HttpRequestMessage(HttpMethod.Get,
@@ -164,6 +167,11 @@ namespace Vilandagro.WebApi.Tests
             batchRequestContent.Add(categories1Content);
             batchRequestContent.Add(addNewCategoryContent);
             batchRequestContent.Add(categories2Content);
+            if (!string.IsNullOrEmpty(transactionPattern))
+            {
+                batchRequestContent.Headers.Add(TransactionPerRequestMessageHandler.TransactionPattern,
+                    new string[] { transactionPattern });
+            }
 
             var batchResponse = await Post("/api/batch", batchRequestContent);
             MultipartMemoryStreamProvider batchResponseContent = await batchResponse.Content.ReadAsMultipartAsync();
@@ -180,6 +188,41 @@ namespace Vilandagro.WebApi.Tests
             var categories = categories2Rresponse.Content.ReadAsAsync<List<Category>>().Result;
             CollectionAssert.IsNotEmpty(categories);
             Assert.IsTrue(categories.Any(c => c.Id == newCategoryId));
+        }
+
+        [Test]
+        public async void Batch_SomeRequestsAreNotSuccess()
+        {
+            //Create a request to query for customers
+            HttpRequestMessage categories1Request = new HttpRequestMessage(HttpMethod.Get,
+                string.Concat(WebApiStarter.WebApiDefaultAddress, "api/test1/categories"));
+            //Create a message to add a customer
+            HttpRequestMessage addNewCategoryRequest = new HttpRequestMessage(HttpMethod.Post,
+                string.Concat(WebApiStarter.WebApiDefaultAddress, "api/test2/addNewCategory"));
+            //Create a request to query for customers
+            HttpRequestMessage categories2Request = new HttpRequestMessage(HttpMethod.Get,
+                string.Concat(WebApiStarter.WebApiDefaultAddress, "api/test/categories"));
+
+            HttpMessageContent categories1Content = new HttpMessageContent(categories1Request);
+            HttpMessageContent addNewCategoryContent = new HttpMessageContent(addNewCategoryRequest);
+            HttpMessageContent categories2Content = new HttpMessageContent(categories2Request);
+
+            MultipartContent batchRequestContent = new MultipartContent("mixed", "batch_" + Guid.NewGuid());
+            batchRequestContent.Add(categories1Content);
+            batchRequestContent.Add(addNewCategoryContent);
+            batchRequestContent.Add(categories2Content);
+
+            var batchResponse = await Post("/api/batch", batchRequestContent);
+            MultipartMemoryStreamProvider batchResponseContent = await batchResponse.Content.ReadAsMultipartAsync();
+            HttpResponseMessage categories1Rresponse = await batchResponseContent.Contents[0].ReadAsHttpResponseMessageAsync();
+            HttpResponseMessage addNewCategoryRresponse = await batchResponseContent.Contents[1].ReadAsHttpResponseMessageAsync();
+            HttpResponseMessage categories2Rresponse = await batchResponseContent.Contents[2].ReadAsHttpResponseMessageAsync();
+
+            Assert.IsTrue(categories1Rresponse.StatusCode == HttpStatusCode.NotFound);
+            Assert.IsTrue(addNewCategoryRresponse.StatusCode == HttpStatusCode.NotFound);
+            Assert.IsTrue(categories2Rresponse.StatusCode == HttpStatusCode.OK);
+
+            CollectionAssert.IsEmpty(categories2Rresponse.Content.ReadAsAsync<List<Category>>().Result);
         }
     }
 }

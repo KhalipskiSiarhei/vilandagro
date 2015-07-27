@@ -116,6 +116,7 @@
     <Compile Include="Handlers\TransactionPerRequestMessageHandler.cs" />
     <Compile Include="ModelStateException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TransactionsPattern.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
