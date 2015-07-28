@@ -15,11 +15,18 @@ namespace Vilandagro.WebApi
     {
         public static void Register(HttpConfiguration config)
         {
-            RegisterServerWithConfiguraton(config);
+            ConfigureServer(config, GlobalConfiguration.DefaultServer);
         }
 
-        public static HttpServer RegisterServerWithConfiguraton(HttpConfiguration config)
+        public static HttpServer RegisterOwin(HttpConfiguration config)
         {
+            return ConfigureServer(config);
+        }
+
+        private static HttpServer ConfigureServer(HttpConfiguration config, HttpServer server = null)
+        {
+            server = server ?? new HttpServer(config);
+
             // Web API configuration and services
             var container = StructureMapContainer.GetContainer();
             var log = container.GetInstance<ILog>();
@@ -27,14 +34,13 @@ namespace Vilandagro.WebApi
             GlobalConfiguration.Configuration.DependencyResolver = config.DependencyResolver;
 
             config.MessageHandlers.Add(
-                (DelegatingHandler) config.DependencyResolver.GetService(typeof (LoggingMessageHandler)));
+                (DelegatingHandler)config.DependencyResolver.GetService(typeof(LoggingMessageHandler)));
             config.MessageHandlers.Add(
-                (DelegatingHandler) config.DependencyResolver.GetService(typeof (TransactionPerRequestMessageHandler)));
+                (DelegatingHandler)config.DependencyResolver.GetService(typeof(TransactionPerRequestMessageHandler)));
 
             // Web API routes
             config.MapHttpAttributeRoutes();
 
-            var server = new HttpServer(config);
             config.Routes.MapHttpBatchRoute(
                 routeName: "batch",
                 routeTemplate: "api/batch",
