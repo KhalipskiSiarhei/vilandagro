@@ -44,9 +44,15 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Scripts\TestData\00000001-Add test categories.sql" />
-    <Content Include="Scripts\Updates\20150319-001-Create initial tables.sql" />
-    <Content Include="Scripts\Updates\20150605-001-Add version columns.sql" />
+    <Content Include="Scripts\TestData\00000001-Add test categories.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Updates\20150319-001-Create initial tables.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Updates\20150605-001-Add version columns.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

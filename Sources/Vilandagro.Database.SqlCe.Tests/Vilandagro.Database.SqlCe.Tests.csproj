@@ -60,6 +60,10 @@
       <Project>{9594c721-7aca-49a4-9080-b26371c02268}</Project>
       <Name>Vilandagro.Database.SqlCe</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Vilandagro.Database\Vilandagro.Database.csproj">
+      <Project>{232d9371-5f3a-4b70-8655-c436bbf03d29}</Project>
+      <Name>Vilandagro.Database</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -67,8 +71,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>MD $(ProjectDir)$(OutDir)Scripts
-XCOPY $(SolutionDir)Vilandagro.Database\Scripts $(ProjectDir)$(OutDir)Scripts /Y /F /S</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
