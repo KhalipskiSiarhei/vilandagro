@@ -1,5 +1,7 @@
 language: csharp
 solution: ./Sources/Vilandagro.sln
+services:
+  - sqlite3      # start sqlite3
 install:
   - nuget restore ./Sources/Vilandagro.sln
   - nuget install nUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
