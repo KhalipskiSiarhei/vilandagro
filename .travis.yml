@@ -7,4 +7,4 @@ install:
   - nuget install nUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
 script:
  - xbuild /p:Configuration=Release ./Sources/Vilandagro.sln
- - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./Sources/Vilandagro.Core.Tests/bin/Release/Vilandagro.Core.Tests.dll ./Sources/Vilandagro.Infrastructure.Tests/bin/Release/Vilandagro.Infrastructure.Tests.dll
+ - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./Sources/Vilandagro.Core.Tests/bin/Release/Vilandagro.Core.Tests.dll ./Sources/Vilandagro.Infrastructure.Tests/bin/Release/Vilandagro.Infrastructure.Tests.dll ./Sources/Vilandagro.Infrastructure.EF.Tests/bin/Release/Vilandagro.Infrastructure.EF.Tests.dll
