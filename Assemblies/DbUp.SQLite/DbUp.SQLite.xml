@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DbUp.SQLite</name>
+    </assembly>
+    <members>
+        <member name="T:DbUp.SQLite.Helpers.InMemorySQLiteDatabase">
+            <summary>
+            Used to create in-memory SQLite database that is deleted at the end of a test.
+            </summary>
+        </member>
+        <member name="M:DbUp.SQLite.Helpers.InMemorySQLiteDatabase.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:DbUp.SQLite.Helpers.InMemorySQLiteDatabase"/> class.
+            </summary>
+        </member>
+        <member name="M:DbUp.SQLite.Helpers.InMemorySQLiteDatabase.GetConnectionManager">
+            <summary>
+            Gets the connection factory of in-memory database.
+            </summary>
+        </member>
+        <member name="M:DbUp.SQLite.Helpers.InMemorySQLiteDatabase.Dispose">
+            <summary>
+            remove the database from memory
+            </summary>
+        </member>
+        <member name="P:DbUp.SQLite.Helpers.InMemorySQLiteDatabase.SqlRunner">
+            <summary>
+            An ahoc sql runner against the in-memory database
+            </summary>
+        </member>
+        <member name="T:DbUp.SQLite.Helpers.SharedConnection">
+            <summary>
+            A database connection wrapper to manage underlying connection as a shared connection
+            during database upgrade. 
+            <remarks>
+            if underlying connection is already openned then it will be kept as opened and will not be closed 
+            otherwise it will be openned when object is created and closed when object is disposed
+            however it will not be disposed
+            </remarks>
+            </summary>
+        </member>
+        <member name="T:DbUp.SQLite.Helpers.TemporarySQLiteDatabase">
+            <summary>
+            Used to create SQLite databases that are deleted at the end of a test.
+            </summary>
+        </member>
+        <member name="M:DbUp.SQLite.Helpers.TemporarySQLiteDatabase.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DbUp.SQLite.Helpers.TemporarySQLiteDatabase"/> class.
+            </summary>
+            <param name="name">The name.</param>
+        </member>
+        <member name="M:DbUp.SQLite.Helpers.TemporarySQLiteDatabase.Create">
+            <summary>
+            Creates the database.
+            </summary>
+        </member>
+        <member name="M:DbUp.SQLite.Helpers.TemporarySQLiteDatabase.Dispose">
+            <summary>
+            Deletes the database.
+            </summary>
+        </member>
+        <member name="P:DbUp.SQLite.Helpers.TemporarySQLiteDatabase.SqlRunner">
+            <summary>
+            An ahoc sql runner against the temporary database
+            </summary>
+        </member>
+        <member name="M:DbUp.SQLite.SQLiteConnectionManager.SplitScriptIntoCommands(System.String)">
+            <summary>
+            Sqlite statements seprator is ; (see http://www.sqlite.org/lang.html)
+            </summary>
+        </member>
+        <member name="T:SQLiteExtensions">
+            <summary>
+            Configuration extension methods for SQLite (see http://www.sqlite.org/)
+            </summary>
+        </member>
+        <member name="M:SQLiteExtensions.SQLiteDatabase(DbUp.Builder.SupportedDatabases,System.String)">
+            <summary>
+            Creates an upgrader for SQLite databases.
+            </summary>
+            <param name="supported">Fluent helper type.</param>
+            <param name="connectionString">SQLite database connection string</param>
+            <returns>
+            A builder for a database upgrader designed for SQLite databases.
+            </returns>
+        </member>
+        <member name="M:SQLiteExtensions.SQLiteDatabase(DbUp.Builder.SupportedDatabases,DbUp.SQLite.Helpers.SharedConnection)">
+            <summary>
+            Creates an upgrader for SQLite databases.
+            </summary>
+            <param name="supported">Fluent helper type.</param>
+            <param name="sharedConnection">SQLite database connection which you control when it is closed</param>
+            <returns>
+            A builder for a database upgrader designed for SQLite databases.
+            </returns>
+        </member>
+        <member name="T:DbUp.SQLite.SQLitePreprocessor">
+            <summary>
+            This preprocessor makes adjustments to your sql to make it compatible with Sqlite
+            </summary>
+        </member>
+        <member name="M:DbUp.SQLite.SQLitePreprocessor.Process(System.String)">
+            <summary>
+            Performs some proprocessing step on a SQLite script
+            </summary>
+        </member>
+    </members>
+</doc>

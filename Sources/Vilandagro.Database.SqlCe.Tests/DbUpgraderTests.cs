@@ -34,7 +34,7 @@ namespace Vilandagro.Database.SqlCe.Tests
         public void CreateDb_DbIsConfiguredViaAbsolutePath(Mode mode)
         {
             // Arrange
-            var dbFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _dbFileName);
+            var dbFilePath = Path.Combine(Environment.CurrentDirectory, _dbFileName);
 
             _dbUpgrader = new DbUpgrader(mode, string.Format("Data Source={0}", dbFilePath));
 
@@ -69,7 +69,7 @@ namespace Vilandagro.Database.SqlCe.Tests
         public void CreateUpdateDb_DbIsConfiguredViaAbsolutePath(Mode mode)
         {
             // Arrange
-            var dbFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _dbFileName);
+            var dbFilePath = Path.Combine(Environment.CurrentDirectory, _dbFileName);
             var connectionString = string.Format("Data Source={0}", dbFilePath);
             _dbUpgrader = new DbUpgrader(mode, connectionString);
             var result = _dbUpgrader.Upgrade();

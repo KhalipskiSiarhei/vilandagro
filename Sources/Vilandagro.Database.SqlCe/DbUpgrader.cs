@@ -117,7 +117,7 @@ namespace Vilandagro.Database.SqlCe
 
             try
             {
-                var fullScriptsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, scriptsPath);
+                var fullScriptsPath = Path.Combine(Environment.CurrentDirectory, scriptsPath);
                 var updatesDeployer =
                     DeployChanges.To.SqlCeDatabase(connectionString)
                         .WithScriptsFromFileSystem(fullScriptsPath)
@@ -192,7 +192,7 @@ namespace Vilandagro.Database.SqlCe
             if (!Path.IsPathRooted(pathOfConnectionString))
             {
                 var fullPathOfConnectionString = Path.Combine(
-                    AppDomain.CurrentDomain.BaseDirectory,
+                    Environment.CurrentDirectory,
                     pathOfConnectionString);
 
                 connectionString = connectionString.Replace(pathOfConnectionString, fullPathOfConnectionString);
