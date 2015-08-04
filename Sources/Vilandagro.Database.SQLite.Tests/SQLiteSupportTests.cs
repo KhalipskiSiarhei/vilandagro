@@ -21,6 +21,7 @@ namespace Vilandagro.Database.SQLite.Tests
             _dbFilePath = Path.Combine(Environment.CurrentDirectory, string.Concat(Guid.NewGuid().ToString(), ".db"));
         }
 
+        [TearDown]
         public void TearDown()
         {
             if (File.Exists(_dbFilePath))

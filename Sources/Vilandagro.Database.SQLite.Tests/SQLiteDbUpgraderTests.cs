@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
 
-namespace Vilandagro.Database.SqlCe.Tests
+namespace Vilandagro.Database.SQLite.Tests
 {
     [TestFixture]
-    public class DbUpgraderTests
+    public class SQLiteDbUpgraderTests
     {
         private DbUpgrader _dbUpgrader;
         private string _dbFileName;
@@ -17,7 +13,7 @@ namespace Vilandagro.Database.SqlCe.Tests
         [SetUp]
         public void SetUp()
         {
-            _dbFileName = string.Concat(Guid.NewGuid().ToString(), ".sdf");
+            _dbFileName = string.Concat(Guid.NewGuid().ToString(), ".db");
         }
 
         [TearDown]
@@ -36,7 +32,7 @@ namespace Vilandagro.Database.SqlCe.Tests
             // Arrange
             var dbFilePath = Path.Combine(Environment.CurrentDirectory, _dbFileName);
 
-            _dbUpgrader = new DbUpgrader(mode, string.Format("Data Source={0}", dbFilePath));
+            _dbUpgrader = new SQLiteDbUpgrader(mode, string.Format("Data Source={0}", dbFilePath));
 
             // Act
             var result = _dbUpgrader.Upgrade();
@@ -52,15 +48,28 @@ namespace Vilandagro.Database.SqlCe.Tests
         public void CreateDb_DbIsConfiguredViaRelativePath(Mode mode)
         {
             // Arrange
-            _dbUpgrader = new DbUpgrader(mode, string.Format("Data Source={0}", _dbFileName));
+            _dbUpgrader = new SQLiteDbUpgrader(mode, string.Format("Data Source={0}", _dbFileName));
 
             // Act
             var result = _dbUpgrader.Upgrade();
 
             // Asserts
             Assert.IsTrue(result);
-            Assert.IsFalse(_dbFileName == _dbUpgrader.GetPathOfConnectionString());
-            Assert.IsTrue(_dbUpgrader.GetPathOfConnectionString().Contains(_dbFileName));
+            Assert.IsTrue(File.Exists(_dbUpgrader.GetPathOfConnectionString()));
+        }
+
+        [TestCase(Mode.CreateDb)]
+        [TestCase(Mode.CreateTestDb)]
+        public void CreateDb_DbIsConfiguredViaDataDirectoryMask(Mode mode)
+        {
+            // Arrange
+            _dbUpgrader = new SQLiteDbUpgrader(mode, string.Format(@"Data Source=|DataDirectory|\{0}", _dbFileName));
+
+            // Act
+            var result = _dbUpgrader.Upgrade();
+
+            // Asserts
+            Assert.IsTrue(result);
             Assert.IsTrue(File.Exists(_dbUpgrader.GetPathOfConnectionString()));
         }
 
@@ -71,11 +80,11 @@ namespace Vilandagro.Database.SqlCe.Tests
             // Arrange
             var dbFilePath = Path.Combine(Environment.CurrentDirectory, _dbFileName);
             var connectionString = string.Format("Data Source={0}", dbFilePath);
-            _dbUpgrader = new DbUpgrader(mode, connectionString);
+            _dbUpgrader = new SQLiteDbUpgrader(mode, connectionString);
             var result = _dbUpgrader.Upgrade();
             Assert.IsTrue(result);
 
-            _dbUpgrader = new DbUpgrader(Mode.Update, connectionString);
+            _dbUpgrader = new SQLiteDbUpgrader(Mode.Update, connectionString);
             result = _dbUpgrader.Upgrade();
             Assert.IsTrue(result);
         }
@@ -86,24 +95,38 @@ namespace Vilandagro.Database.SqlCe.Tests
         {
             // Arrange
             var connectionString = string.Format("Data Source={0}", _dbFileName);
-            _dbUpgrader = new DbUpgrader(mode, connectionString);
+            _dbUpgrader = new SQLiteDbUpgrader(mode, connectionString);
             var result = _dbUpgrader.Upgrade();
             Assert.IsTrue(result);
 
-            _dbUpgrader = new DbUpgrader(Mode.Update, connectionString);
+            _dbUpgrader = new SQLiteDbUpgrader(Mode.Update, connectionString);
             result = _dbUpgrader.Upgrade();
             Assert.IsTrue(result);
         }
 
         [Test]
-        public void Update_DbDoesNotExist_FalseReturned()
+        public void Update_DbDoesNotExist_DbCreatedAutomatically()
         {
-            var connectionString = string.Format("Data Source={0}", string.Concat(Guid.NewGuid().ToString(), ".sdf"));
-            _dbUpgrader = new DbUpgrader(Mode.Update, connectionString);
+            var connectionString = string.Format("Data Source={0}", string.Concat(Guid.NewGuid().ToString(), ".db"));
+            _dbUpgrader = new SQLiteDbUpgrader(Mode.Update, connectionString);
 
             var result = _dbUpgrader.Upgrade();
 
-            Assert.IsFalse(result);
+            Assert.IsTrue(result);
+            Assert.IsTrue(File.Exists(_dbUpgrader.GetPathOfConnectionString()));
+        }
+
+        [Test]
+        public void Update_DbDoesNotExistWithDataDirectoryMask_DbCreatedAutomatically()
+        {
+            var connectionString = string.Format(@"Data Source=|DataDirectory|\{0}",
+                string.Concat(Guid.NewGuid().ToString(), ".db"));
+            _dbUpgrader = new SQLiteDbUpgrader(Mode.Update, connectionString);
+
+            var result = _dbUpgrader.Upgrade();
+
+            Assert.IsTrue(result);
+            Assert.IsTrue(File.Exists(_dbUpgrader.GetPathOfConnectionString()));
         }
     }
 }

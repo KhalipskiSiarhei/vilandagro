@@ -57,7 +57,7 @@
   <ItemGroup>
     <Compile Include="DbUpgraderRunnerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DbUpgraderTests.cs" />
+    <Compile Include="SqlCeDbUpgraderTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Vilandagro.Database.SqlCe\Vilandagro.Database.SqlCe.csproj">

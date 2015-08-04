@@ -2,37 +2,50 @@
 using System.IO;
 using System.Linq;
 using Common.Logging;
-using DbUp;
+using DbUp.Builder;
 using DbUp.Engine.Output;
 
-namespace Vilandagro.Database.SqlCe
+namespace Vilandagro.Database
 {
-    public class DbUpgrader
+    public abstract class DbUpgrader
     {
-        private const string ItemTemplate = " - {0}";
+        private const string DataSourceKey = "Data Source=";
+        private const string DataDirectoryMask = "|DataDirectory|";
 
-        private readonly string _connectionString;
+        protected const string ItemTemplate = " - {0}";
 
-        private Mode _mode;
+        protected readonly string _connectionString;
 
-        private IUpgradeLog _upgradeLog;
+        protected Mode _mode;
 
-        public DbUpgrader(Mode mode, string connectionString)
+        protected IUpgradeLog _upgradeLog;
+
+        protected DbUpgrader(Mode mode, string connectionString)
         {
             _upgradeLog = new UpgradeLog(LogManager.GetLogger<DbUpgrader>());
             _mode = mode;
-            _connectionString = GetConnectionStringWithFullPath(connectionString);
+            _connectionString = connectionString;
         }
 
-        public string GetConnectionString()
+        public string ConnectionString
         {
-            return _connectionString;
+            get { return _connectionString; }
         }
 
-        public string GetPathOfConnectionString()
+        public virtual string GetPathOfConnectionString()
         {
-            return GetPathOfConnectionString(_connectionString);
+            var dataSourceKeyValue = _connectionString.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries).Single(s => s.StartsWith(DataSourceKey));
+            var dataSource = dataSourceKeyValue.Replace(DataSourceKey, string.Empty);
+
+            if (dataSource.Contains(DataDirectoryMask))
+            {
+                // TODO: This will not work for ASP.NET environment when ASP_Data folder is used... Need to fix it in the future in any way...
+                dataSource = dataSource.Replace(DataDirectoryMask, Environment.CurrentDirectory);
+            }
+            return dataSource;
         }
+
+        protected abstract UpgradeEngineBuilder GetUpgradeEngineBuilder();
 
         public bool Upgrade()
         {
@@ -85,7 +98,7 @@ namespace Vilandagro.Database.SqlCe
         /// </summary>
         protected bool Update()
         {
-            return RunUpgrade(_connectionString, @"Scripts\Updates", "DB Update");
+            return RunUpgrade(@"Scripts\Updates", "DB Update");
         }
 
         /// <summary>
@@ -94,9 +107,7 @@ namespace Vilandagro.Database.SqlCe
         protected bool CreateDb()
         {
             // Create empty DB
-            var destDbPath = GetPathOfConnectionString(_connectionString);
-
-            File.Create(destDbPath).Dispose();
+            File.Create(GetPathOfConnectionString()).Dispose();
 
             // Run update
             return Update();
@@ -108,18 +119,19 @@ namespace Vilandagro.Database.SqlCe
         /// <returns></returns>
         protected bool CreateTestDb()
         {
-            return CreateDb() && RunUpgrade(_connectionString, @"Scripts\TestData", "Test Data");
+            return CreateDb() && RunUpgrade(@"Scripts\TestData", "Test Data");
         }
 
-        protected bool RunUpgrade(string connectionString, string scriptsPath, string stepName)
+        protected bool RunUpgrade(string scriptsPath, string stepName)
         {
             var upgraded = false;
 
             try
             {
                 var fullScriptsPath = Path.Combine(Environment.CurrentDirectory, scriptsPath);
+                var upgradeEngineBuilder = GetUpgradeEngineBuilder();
                 var updatesDeployer =
-                    DeployChanges.To.SqlCeDatabase(connectionString)
+                    upgradeEngineBuilder
                         .WithScriptsFromFileSystem(fullScriptsPath)
                         .WithTransactionPerScript()
                         .LogScriptOutput()
@@ -183,28 +195,6 @@ namespace Vilandagro.Database.SqlCe
 
             _upgradeLog.WriteInformation("Step {0} has been finished", stepName);
             return upgraded;
-        }
-
-        private string GetConnectionStringWithFullPath(string connectionString)
-        {
-            var pathOfConnectionString = GetPathOfConnectionString(connectionString);
-
-            if (!Path.IsPathRooted(pathOfConnectionString))
-            {
-                var fullPathOfConnectionString = Path.Combine(
-                    Environment.CurrentDirectory,
-                    pathOfConnectionString);
-
-                connectionString = connectionString.Replace(pathOfConnectionString, fullPathOfConnectionString);
-            }
-
-            return connectionString;
-        }
-
-        private string GetPathOfConnectionString(string connectionString)
-        {
-            var pathOfConnectionString = connectionString.Split(new[] { "=" }, StringSplitOptions.RemoveEmptyEntries)[1];
-            return pathOfConnectionString;
         }
     }
 }

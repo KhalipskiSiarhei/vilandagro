@@ -4,8 +4,8 @@
 	[Name] NVARCHAR(128) NOT NULL,
 	[Description] NVARCHAR(512) NULL,
 	[Image] NVARCHAR(64) NULL
-)
-GO
+);
+GO;
 
 CREATE TABLE [Product]
 (
@@ -16,8 +16,8 @@ CREATE TABLE [Product]
 	[Image] NVARCHAR(64) NULL,
 
 	FOREIGN KEY (CategoryId) REFERENCES Category(Id)
-)
-GO
+);
+GO;
 
 CREATE TABLE [SpringProduct]
 (
@@ -26,16 +26,16 @@ CREATE TABLE [SpringProduct]
 	[Weight] DECIMAL NULL,
 
 	FOREIGN KEY (Id) REFERENCES Product(Id)
-)
-GO
+);
+GO;
 
 CREATE TABLE [UnitOfPrice]
 (
 	[Id] INT IDENTITY NOT NULL CONSTRAINT UnitOfPrice_PK PRIMARY KEY,
 	[Name] NVARCHAR(64) NOT NULL,
 	[Description] NVARCHAR(128) NULL
-)
-GO
+);
+GO;
 
 CREATE TABLE [ProductPrice]
 (
@@ -45,5 +45,5 @@ CREATE TABLE [ProductPrice]
 
 	FOREIGN KEY (ProductId) REFERENCES Product(Id),
 	FOREIGN KEY (UnitOfPriceId) REFERENCES UnitOfPrice(Id)
-)
-GO
+);
+GO;

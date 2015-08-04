@@ -29,7 +29,7 @@ namespace Vilandagro.Database.SqlCe
             {
                 var connectionString = GetConnectionString(args);
                 var mode = GetMode(args);
-                var databaseUpgrader = new DbUpgrader(mode, connectionString);
+                var databaseUpgrader = new SqlCeDbUpgrader(mode, connectionString);
 
                 result = databaseUpgrader.Upgrade();
             }

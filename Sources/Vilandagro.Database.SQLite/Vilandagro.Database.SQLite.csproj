@@ -70,6 +70,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlCeDbUpgrader.cs" />
+    <Compile Include="SQLitePreprocessor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
