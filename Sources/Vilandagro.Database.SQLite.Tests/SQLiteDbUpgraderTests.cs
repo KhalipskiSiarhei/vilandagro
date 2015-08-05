@@ -32,7 +32,7 @@ namespace Vilandagro.Database.SQLite.Tests
             // Arrange
             var dbFilePath = Path.Combine(Environment.CurrentDirectory, _dbFileName);
 
-            _dbUpgrader = new SQLiteDbUpgrader(mode, string.Format("Data Source={0}", dbFilePath));
+            _dbUpgrader = new SQLiteDbUpgrader(mode, string.Format("Data Source={0}; Version=3;", dbFilePath));
 
             // Act
             var result = _dbUpgrader.Upgrade();
@@ -48,7 +48,7 @@ namespace Vilandagro.Database.SQLite.Tests
         public void CreateDb_DbIsConfiguredViaRelativePath(Mode mode)
         {
             // Arrange
-            _dbUpgrader = new SQLiteDbUpgrader(mode, string.Format("Data Source={0}", _dbFileName));
+            _dbUpgrader = new SQLiteDbUpgrader(mode, string.Format("Data Source={0}; Version=3;", _dbFileName));
 
             // Act
             var result = _dbUpgrader.Upgrade();
@@ -63,7 +63,7 @@ namespace Vilandagro.Database.SQLite.Tests
         public void CreateDb_DbIsConfiguredViaDataDirectoryMask(Mode mode)
         {
             // Arrange
-            _dbUpgrader = new SQLiteDbUpgrader(mode, string.Format(@"Data Source=|DataDirectory|\{0}", _dbFileName));
+            _dbUpgrader = new SQLiteDbUpgrader(mode, string.Format(@"Data Source=|DataDirectory|\{0}; Version=3;", _dbFileName));
 
             // Act
             var result = _dbUpgrader.Upgrade();
@@ -79,7 +79,7 @@ namespace Vilandagro.Database.SQLite.Tests
         {
             // Arrange
             var dbFilePath = Path.Combine(Environment.CurrentDirectory, _dbFileName);
-            var connectionString = string.Format("Data Source={0}", dbFilePath);
+            var connectionString = string.Format("Data Source={0}; Version=3;", dbFilePath);
             _dbUpgrader = new SQLiteDbUpgrader(mode, connectionString);
             var result = _dbUpgrader.Upgrade();
             Assert.IsTrue(result);
@@ -94,7 +94,7 @@ namespace Vilandagro.Database.SQLite.Tests
         public void CreateUpdateDb_DbIsConfiguredViaRelativePath(Mode mode)
         {
             // Arrange
-            var connectionString = string.Format("Data Source={0}", _dbFileName);
+            var connectionString = string.Format("Data Source={0}; Version=3;", _dbFileName);
             _dbUpgrader = new SQLiteDbUpgrader(mode, connectionString);
             var result = _dbUpgrader.Upgrade();
             Assert.IsTrue(result);
@@ -107,7 +107,7 @@ namespace Vilandagro.Database.SQLite.Tests
         [Test]
         public void Update_DbDoesNotExist_DbCreatedAutomatically()
         {
-            var connectionString = string.Format("Data Source={0}", string.Concat(Guid.NewGuid().ToString(), ".db"));
+            var connectionString = string.Format("Data Source={0}; Version=3;", string.Concat(Guid.NewGuid().ToString(), ".db"));
             _dbUpgrader = new SQLiteDbUpgrader(Mode.Update, connectionString);
 
             var result = _dbUpgrader.Upgrade();
@@ -119,7 +119,7 @@ namespace Vilandagro.Database.SQLite.Tests
         [Test]
         public void Update_DbDoesNotExistWithDataDirectoryMask_DbCreatedAutomatically()
         {
-            var connectionString = string.Format(@"Data Source=|DataDirectory|\{0}",
+            var connectionString = string.Format(@"Data Source=|DataDirectory|\{0}; Version=3;",
                 string.Concat(Guid.NewGuid().ToString(), ".db"));
             _dbUpgrader = new SQLiteDbUpgrader(Mode.Update, connectionString);
 
