@@ -98,7 +98,7 @@ namespace Vilandagro.Database
         /// </summary>
         protected bool Update()
         {
-            return RunUpgrade(@"Scripts\Updates", "DB Update");
+            return RunUpgrade(@"Scripts/Updates", "DB Update");
         }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace Vilandagro.Database
         /// <returns></returns>
         protected bool CreateTestDb()
         {
-            return CreateDb() && RunUpgrade(@"Scripts\TestData", "Test Data");
+            return CreateDb() && RunUpgrade(@"Scripts/TestData", "Test Data");
         }
 
         protected bool RunUpgrade(string scriptsPath, string stepName)
