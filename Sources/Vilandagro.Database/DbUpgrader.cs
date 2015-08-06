@@ -104,7 +104,7 @@ namespace Vilandagro.Database
         /// <summary>
         /// Create new Db
         /// </summary>
-        protected bool CreateDb()
+        protected virtual bool CreateDb()
         {
             // Create empty DB
             File.Create(GetPathOfConnectionString()).Dispose();
