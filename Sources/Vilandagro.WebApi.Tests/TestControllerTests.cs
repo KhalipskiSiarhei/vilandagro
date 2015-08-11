@@ -144,6 +144,7 @@ namespace Vilandagro.WebApi.Tests
             Assert.IsTrue(categories2.Any(c => c.Id == newCategory2Id));
         }
 
+        [Category("ExcludeFromCI")]
         [TestCase("PerBatch")]
         [TestCase("PerRequest")]
         [TestCase("")]
@@ -190,6 +191,7 @@ namespace Vilandagro.WebApi.Tests
             Assert.IsTrue(categories.Any(c => c.Id == newCategoryId));
         }
 
+        [Category("ExcludeFromCI")]
         [Test]
         public async void Batch_SomeRequestsAreNotSuccess()
         {

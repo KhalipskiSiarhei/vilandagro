@@ -72,6 +72,7 @@ namespace Vilandagro.WebApi.Tests
             Assert.IsTrue(services.Single() is IRequestAware);
         }
 
+        [Category("ExcludeFromCI")]
         [Test]
         public void BeginScope_ContainersAreDifferent()
         {
