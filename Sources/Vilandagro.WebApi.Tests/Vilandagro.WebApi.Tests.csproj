@@ -29,6 +29,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CI|AnyCPU'">
+    <OutputPath>bin\CI\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Common.Logging, Version=3.0.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -116,8 +125,23 @@
     <Compile Include="WebApiOwinStartup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.CI.config">
+      <DependentUpon>app.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </None>
+    <None Include="app.config">
+      <TransformOnBuild>true</TransformOnBuild>
+    </None>
+    <None Include="app.Debug.config">
+      <DependentUpon>app.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </None>
+    <None Include="app.Release.config">
+      <DependentUpon>app.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </None>
     <None Include="packages.config" />
+    <None Include="Properties\SlowCheetah\SlowCheetah.Transforms.targets" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Vilandagro.Core\Vilandagro.Core.csproj">
@@ -147,6 +171,13 @@
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>
+  <PropertyGroup Label="SlowCheetah">
+    <SlowCheetahToolsPath>$([System.IO.Path]::GetFullPath( $(MSBuildProjectDirectory)\..\packages\SlowCheetah.2.5.15\tools\))</SlowCheetahToolsPath>
+    <SlowCheetah_EnableImportFromNuGet Condition=" '$(SlowCheetah_EnableImportFromNuGet)'=='' ">true</SlowCheetah_EnableImportFromNuGet>
+    <SlowCheetah_NuGetImportPath Condition=" '$(SlowCheetah_NuGetImportPath)'=='' ">$([System.IO.Path]::GetFullPath( $(MSBuildProjectDirectory)\Properties\SlowCheetah\SlowCheetah.Transforms.targets ))</SlowCheetah_NuGetImportPath>
+    <SlowCheetahTargets Condition=" '$(SlowCheetah_EnableImportFromNuGet)'=='true' and Exists('$(SlowCheetah_NuGetImportPath)') ">$(SlowCheetah_NuGetImportPath)</SlowCheetahTargets>
+  </PropertyGroup>
+  <Import Project="$(SlowCheetahTargets)" Condition="Exists('$(SlowCheetahTargets)')" Label="SlowCheetah" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

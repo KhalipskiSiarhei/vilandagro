@@ -31,7 +31,7 @@ namespace Vilandagro.Infrastructure.EF
             modelBuilder.Configurations.Add(new SpringProductMap());
             modelBuilder.Configurations.Add(new UnitOfPriceMap());
 
-            this.Database.Log = LogManager.GetLogger<ILog>().Debug;
+            this.Database.Log = LogManager.GetLogger<VilandagroDbContext>().Debug;
 
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             base.OnModelCreating(modelBuilder);

@@ -21,7 +21,7 @@ namespace Vilandagro.Infrastructure.EF.Tests
         }
 
         [Test]
-        public void GetAll_OfCategory_EmptyResult()
+        public void GetAll_OfCategory_IsEmptyResult()
         {
             var result = Repo.GetAll<Category>();
             CollectionAssert.IsEmpty(result);

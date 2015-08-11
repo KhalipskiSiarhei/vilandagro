@@ -22,7 +22,7 @@ namespace Vilandagro.Infrastructure.EF.Tests.DifferentTypesOfQueries
         {
             var sql = "SELECT c.Id, c.Name, c.Description, c.Image, c.Version FROM Categories AS c";
             var categoriesQuery = _context.CreateQuery<Category>(sql);
-            var categories = categoriesQuery.ToList();
+            var categories = categoriesQuery.Where(c => c.Version == 100).ToList();
         }
 
         [Test]
