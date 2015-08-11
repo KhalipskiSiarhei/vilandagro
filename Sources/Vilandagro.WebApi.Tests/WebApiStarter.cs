@@ -5,7 +5,7 @@ namespace Vilandagro.WebApi.Tests
 {
     public static class WebApiStarter
     {
-        public const string WebApiDefaultAddress = "http://localhost:9000/";
+        public const string WebApiDefaultAddress = "http://localhost:9000";
 
         public static IDisposable RunWebApi(string baseAddress)
         {
