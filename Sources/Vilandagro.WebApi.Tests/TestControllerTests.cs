@@ -151,13 +151,13 @@ namespace Vilandagro.WebApi.Tests
         {
             //Create a request to query for customers
             HttpRequestMessage categories1Request = new HttpRequestMessage(HttpMethod.Get,
-                string.Concat(WebApiStarter.WebApiDefaultAddress, "api/test/categories"));
+                string.Concat(WebApiStarter.WebApiDefaultAddress, "/api/test/categories"));
             //Create a message to add a customer
             HttpRequestMessage addNewCategoryRequest = new HttpRequestMessage(HttpMethod.Post,
-                string.Concat(WebApiStarter.WebApiDefaultAddress, "api/test/addNewCategory"));
+                string.Concat(WebApiStarter.WebApiDefaultAddress, "/api/test/addNewCategory"));
             //Create a request to query for customers
             HttpRequestMessage categories2Request = new HttpRequestMessage(HttpMethod.Get,
-                string.Concat(WebApiStarter.WebApiDefaultAddress, "api/test/categories"));
+                string.Concat(WebApiStarter.WebApiDefaultAddress, "/api/test/categories"));
 
             HttpMessageContent categories1Content = new HttpMessageContent(categories1Request);
             HttpMessageContent addNewCategoryContent = new HttpMessageContent(addNewCategoryRequest);
@@ -195,13 +195,13 @@ namespace Vilandagro.WebApi.Tests
         {
             //Create a request to query for customers
             HttpRequestMessage categories1Request = new HttpRequestMessage(HttpMethod.Get,
-                string.Concat(WebApiStarter.WebApiDefaultAddress, "api/test1/categories"));
+                string.Concat(WebApiStarter.WebApiDefaultAddress, "/api/test1/categories"));
             //Create a message to add a customer
             HttpRequestMessage addNewCategoryRequest = new HttpRequestMessage(HttpMethod.Post,
-                string.Concat(WebApiStarter.WebApiDefaultAddress, "api/test2/addNewCategory"));
+                string.Concat(WebApiStarter.WebApiDefaultAddress, "/api/test2/addNewCategory"));
             //Create a request to query for customers
             HttpRequestMessage categories2Request = new HttpRequestMessage(HttpMethod.Get,
-                string.Concat(WebApiStarter.WebApiDefaultAddress, "api/test/categories"));
+                string.Concat(WebApiStarter.WebApiDefaultAddress, "/api/test/categories"));
 
             HttpMessageContent categories1Content = new HttpMessageContent(categories1Request);
             HttpMessageContent addNewCategoryContent = new HttpMessageContent(addNewCategoryRequest);
