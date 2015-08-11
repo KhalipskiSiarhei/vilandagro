@@ -8,4 +8,4 @@ before_script:
   - mysql -e "create database test;"
 script:
  - xbuild /p:Configuration=Release ./Sources/Vilandagro.sln
- - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./Sources/Vilandagro.Core.Tests/bin/Release/Vilandagro.Core.Tests.dll ./Sources/Vilandagro.Infrastructure.Tests/bin/Release/Vilandagro.Infrastructure.Tests.dll ./Sources/Vilandagro.Database.MySql.Tests/bin/Release/Vilandagro.Database.MySql.Tests.dll ./Sources/Vilandagro.Infrastructure.EF.Tests/bin/Release/Vilandagro.Infrastructure.EF.Tests.dll
+ - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./Sources/Vilandagro.Core.Tests/bin/Release/Vilandagro.Core.Tests.dll ./Sources/Vilandagro.Infrastructure.Tests/bin/Release/Vilandagro.Infrastructure.Tests.dll ./Sources/Vilandagro.Database.MySql.Tests/bin/Release/Vilandagro.Database.MySql.Tests.dll ./Sources/Vilandagro.Infrastructure.EF.Tests/bin/Release/Vilandagro.Infrastructure.EF.Tests.dll ./Sources/Vilandagro.WebApi.Tests/bin/Release/Vilandagro.WebApi.Tests.dll
