@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Vilandagro.Core.Algorithms
 {
-    public class InsertionSort : ISort
+    public class InsertionSort : SortBase
     {
-        public T[] Sort<T>(T[] arrayToSort, bool order)
+        public override T[] Sort<T>(T[] arrayToSort, bool order)
         {
             if (arrayToSort == null)
             {
@@ -38,14 +38,6 @@ namespace Vilandagro.Core.Algorithms
             }
 
             return sortedArray;
-        }
-
-        public string Sort(string toSort, bool order)
-        {
-            var arrayToSort = toSort.ToCharArray();
-            var sortedArray = Sort(arrayToSort, order);
-
-            return new string(sortedArray);
         }
 
         /// <summary>

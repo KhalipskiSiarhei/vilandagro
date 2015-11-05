@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace Vilandagro.Core.Algorithms
 {
-    public class QuickSort : SortBase
+    public class MergeSortItem<T>
     {
-        public override T[] Sort<T>(T[] arrayToSort, bool order)
-        {
-            throw new NotImplementedException();
-        }
+        public MergeSortItem<T> Left { get; set; }
+
+        public MergeSortItem<T> Right { get; set; }
     }
 }

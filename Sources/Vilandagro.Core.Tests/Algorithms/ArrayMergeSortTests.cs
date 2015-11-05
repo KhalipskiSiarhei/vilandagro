@@ -9,14 +9,14 @@ using Vilandagro.Core.Algorithms;
 namespace Vilandagro.Core.Tests.Algorithms
 {
     [TestFixture]
-    public class ArrayInsertionSortTests : ArraySortTestFixture
+    public class ArrayMergeSortTests : ArraySortTestFixture
     {
         [SetUp]
         public override void SetUp()
         {
             base.SetUp();
 
-            _sorting = new InsertionSort();
+            _sorting = new MergeSort();
         }
     }
 }

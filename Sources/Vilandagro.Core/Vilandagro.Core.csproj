@@ -59,7 +59,10 @@
     <Compile Include="Algorithms\InsertionSort.cs" />
     <Compile Include="Algorithms\ISort.cs" />
     <Compile Include="Algorithms\MergeSort.cs" />
+    <Compile Include="Algorithms\MergeSortItem.cs" />
     <Compile Include="Algorithms\QuickSort.cs" />
+    <Compile Include="Algorithms\SingleMergeSortItem.cs" />
+    <Compile Include="Algorithms\SortBase.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\IEntity.cs" />
     <Compile Include="Entities\IVersion.cs" />
