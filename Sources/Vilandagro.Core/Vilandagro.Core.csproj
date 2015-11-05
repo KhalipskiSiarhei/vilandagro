@@ -56,6 +56,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\InsertionSort.cs" />
+    <Compile Include="Algorithms\ISort.cs" />
+    <Compile Include="Algorithms\MergeSort.cs" />
+    <Compile Include="Algorithms\QuickSort.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\IEntity.cs" />
     <Compile Include="Entities\IVersion.cs" />

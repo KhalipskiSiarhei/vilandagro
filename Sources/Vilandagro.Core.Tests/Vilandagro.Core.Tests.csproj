@@ -51,6 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\ArrayInsertionSortTests.cs" />
+    <Compile Include="Algorithms\StringInsertionSortTests.cs" />
     <Compile Include="ImplicitAndExplicitInterfacesTest.cs" />
     <Compile Include="MonadasTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
