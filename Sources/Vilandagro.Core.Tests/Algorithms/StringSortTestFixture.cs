@@ -20,14 +20,43 @@ namespace Vilandagro.Core.Tests.Algorithms
         public virtual void SetUp()
         {
             _random = new Random();
-            _toSort = GetRandomString(100);
+        }
 
-            Console.WriteLine("String to sort: '{0}'", _toSort);
+        [Test]
+        public void EmptyString_OK()
+        {
+            _toSort = string.Empty;
+
+            Assert.IsEmpty(_sorting.Sort(_toSort, true));
+            Assert.IsEmpty(_sorting.Sort(_toSort, false));
+        }
+
+        [TestCase("A")]
+        [TestCase("1")]
+        [TestCase("4")]
+        [TestCase("(")]
+        public void StringWithLengthOf1symbol_OK(string toSort)
+        {
+            Assert.IsTrue(_sorting.Sort(toSort, true) == toSort);
+            Assert.IsTrue(_sorting.Sort(toSort, false) == toSort);
+        }
+
+        [TestCase("AAAAAAAAAAAAAAA")]
+        [TestCase("777777777777777777777777")]
+        [TestCase("<<<<<<<<<<<<<<<")]
+        public void StringWithTheSameSymbols_OK(string toSort)
+        {
+            Assert.IsTrue(_sorting.Sort(toSort, true) == toSort);
+            Assert.IsTrue(_sorting.Sort(toSort, false) == toSort);
         }
 
         [Test]
         public void SortAsc_ArrayIsUnsorted_ArrayWasSorted()
         {
+            // Arrange
+            _toSort = GetRandomString(100);
+            Console.WriteLine("String to sort: '{0}'", _toSort);
+
             // Act
             var sorted = _sorting.Sort(_toSort, true);
 
@@ -38,6 +67,8 @@ namespace Vilandagro.Core.Tests.Algorithms
         [Test]
         public void SortDesc_ArrayIsUnsorted_ArrayWasSorted()
         {
+
+
             // Act
             var sorted = _sorting.Sort(_toSort, false);
 
@@ -48,6 +79,10 @@ namespace Vilandagro.Core.Tests.Algorithms
         [Test]
         public void SortAsc_ArrayIsSortedByDesc_ArrayWasSorted()
         {
+            // Arrange
+            _toSort = GetRandomString(100);
+            Console.WriteLine("String to sort: '{0}'", _toSort);
+
             // Arrange
             _toSort = _sorting.Sort(_toSort, false);
 

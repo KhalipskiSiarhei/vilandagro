@@ -76,6 +76,10 @@
     <Compile Include="IRequestAware.cs" />
     <Compile Include="Monadas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tree\BalancedTreeResult.cs" />
+    <Compile Include="Tree\BinarySearchTree.cs" />
+    <Compile Include="Tree\Node.cs" />
+    <Compile Include="Tree\BinaryTree.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

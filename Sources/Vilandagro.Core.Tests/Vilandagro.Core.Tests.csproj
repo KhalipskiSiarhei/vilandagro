@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Compile Include="Tree\TreeTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Vilandagro.Core\Vilandagro.Core.csproj">

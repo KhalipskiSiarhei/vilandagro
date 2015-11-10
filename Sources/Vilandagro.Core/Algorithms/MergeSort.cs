@@ -14,7 +14,7 @@ namespace Vilandagro.Core.Algorithms
         {
             var mergeSortItem = Devide(arrayToSort);
 
-            return Sort(mergeSortItem, order);
+            return mergeSortItem != null ? Sort(mergeSortItem, order) : new T[0];
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Vilandagro.Core.Algorithms
                 item.Left = Devide(leftArray);
                 item.Right = Devide(rightArray);
             }
-            else
+            else if (arrayToSort.Length == 1)
             {
                 var singleItem = new SingleMergeSortItem<T>();
 
