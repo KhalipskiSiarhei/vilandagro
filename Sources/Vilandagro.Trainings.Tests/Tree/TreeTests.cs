@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
-using Vilandagro.Core.Tree;
+﻿using NUnit.Framework;
+using Vilandagro.Trainings.Tree;
 
-namespace Vilandagro.Core.Tests.Tree
+namespace Vilandagro.Trainings.Tests.Tree
 {
     public class TreeTests
     {

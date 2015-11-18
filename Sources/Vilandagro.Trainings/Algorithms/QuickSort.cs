@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Vilandagro.Core.Algorithms
+namespace Vilandagro.Trainings.Algorithms
 {
     public class QuickSort : SortBase
     {

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace Vilandagro.Core.Tree
+namespace Vilandagro.Trainings.Tree
 {
     public class BinarySearchTree<T> : BinaryTree<T> where T : struct
     {

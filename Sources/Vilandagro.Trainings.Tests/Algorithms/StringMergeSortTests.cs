@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
-using Vilandagro.Core.Algorithms;
+﻿using NUnit.Framework;
+using Vilandagro.Trainings.Algorithms;
 
-namespace Vilandagro.Core.Tests.Algorithms
+namespace Vilandagro.Trainings.Tests.Algorithms
 {
     [TestFixture]
     public class StringMergeSortTests : StringSortTestFixture

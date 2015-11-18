@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vilandagro.Core", "Vilandagro.Core\Vilandagro.Core.csproj", "{DE9F8D30-B329-452B-9B44-06D2BB6775B2}"
 EndProject
@@ -39,6 +39,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vilandagro.Database.MySql", "Vilandagro.Database.MySql\Vilandagro.Database.MySql.csproj", "{10CAD86C-31DA-4261-9211-D8FD672EA372}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vilandagro.Database.MySql.Tests", "Vilandagro.Database.MySql.Tests\Vilandagro.Database.MySql.Tests.csproj", "{268648F4-E0DC-4A8C-9E84-37F6A0905258}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vilandagro.Trainings", "Vilandagro.Trainings\Vilandagro.Trainings.csproj", "{A8FCA0DF-C391-41F2-90C0-FC4B01A05073}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vilandagro.Trainings.Tests", "Vilandagro.Trainings.Tests\Vilandagro.Trainings.Tests.csproj", "{8FCAC630-1F07-4449-AE5B-1CE7FD72EE66}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -106,6 +110,14 @@ Global
 		{268648F4-E0DC-4A8C-9E84-37F6A0905258}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{268648F4-E0DC-4A8C-9E84-37F6A0905258}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{268648F4-E0DC-4A8C-9E84-37F6A0905258}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8FCA0DF-C391-41F2-90C0-FC4B01A05073}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8FCA0DF-C391-41F2-90C0-FC4B01A05073}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8FCA0DF-C391-41F2-90C0-FC4B01A05073}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8FCA0DF-C391-41F2-90C0-FC4B01A05073}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FCAC630-1F07-4449-AE5B-1CE7FD72EE66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FCAC630-1F07-4449-AE5B-1CE7FD72EE66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FCAC630-1F07-4449-AE5B-1CE7FD72EE66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FCAC630-1F07-4449-AE5B-1CE7FD72EE66}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -118,5 +130,6 @@ Global
 		{FAEEDE63-E4BE-491D-A62D-8FEF185E6850} = {F908BE0D-3AF7-413A-B59B-E464DF10C01B}
 		{EB18BD55-5ECC-4D33-9D30-8EA8096C5DB7} = {F908BE0D-3AF7-413A-B59B-E464DF10C01B}
 		{268648F4-E0DC-4A8C-9E84-37F6A0905258} = {F908BE0D-3AF7-413A-B59B-E464DF10C01B}
+		{8FCAC630-1F07-4449-AE5B-1CE7FD72EE66} = {F908BE0D-3AF7-413A-B59B-E464DF10C01B}
 	EndGlobalSection
 EndGlobal
