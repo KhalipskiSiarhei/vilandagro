@@ -46,6 +46,9 @@
     <Compile Include="Algorithms\QuickSort.cs" />
     <Compile Include="Algorithms\SingleMergeSortItem.cs" />
     <Compile Include="Algorithms\SortBase.cs" />
+    <Compile Include="Big\BigFileSorting.cs" />
+    <Compile Include="Big\BigTextFileHelper.cs" />
+    <Compile Include="Big\ReaderValue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tree\BalancedTreeResult.cs" />
     <Compile Include="Tree\BinarySearchTree.cs" />

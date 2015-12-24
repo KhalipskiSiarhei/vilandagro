@@ -49,10 +49,13 @@
     <Compile Include="Algorithms\StringInsertionSortTests.cs" />
     <Compile Include="Algorithms\StringMergeSortTests.cs" />
     <Compile Include="Algorithms\StringSortTestFixture.cs" />
+    <Compile Include="Big\BigFileSortingTests.cs" />
+    <Compile Include="Big\BigTextFileHelperTests.cs" />
     <Compile Include="BoxingUnboxingTests.cs" />
     <Compile Include="ImplicitAndExplicitInterfacesTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StructureTests.cs" />
+    <Compile Include="Threads\StartNewThreadTests.cs" />
     <Compile Include="Tree\TreeTests.cs" />
   </ItemGroup>
   <ItemGroup>
