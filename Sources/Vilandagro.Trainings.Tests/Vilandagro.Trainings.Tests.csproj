@@ -50,7 +50,6 @@
     <Compile Include="Algorithms\StringMergeSortTests.cs" />
     <Compile Include="Algorithms\StringSortTestFixture.cs" />
     <Compile Include="Big\BigFileSortingTests.cs" />
-    <Compile Include="Big\BigTextFileHelperTests.cs" />
     <Compile Include="BoxingUnboxingTests.cs" />
     <Compile Include="ImplicitAndExplicitInterfacesTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
